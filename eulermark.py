@@ -470,6 +470,7 @@ def table():
                 with open(os.path.join(root, f)) as _:
                         timing = json.load(_)
 
+                min_time = min(timing.values(), key=timing2float)
                 timing = {key: timing2float(timing[key]) for key in timing}
                 min_t = min(timing.values())
                 timing = {key: int(100 * timing[key] / min_t)
@@ -489,7 +490,7 @@ def table():
             for ext in exts:
                 rel = timings[pid][ext]
                 if rel == 100:
-                    f.write(' | **{}%**'.format(rel))
+                    f.write(' | **{}**'.format(min_time))
                 else:
                     f.write(' | {}%'.format(rel))
             f.write('\n')
