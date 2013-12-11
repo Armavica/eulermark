@@ -1,9 +1,16 @@
+BS4_NOT_FOUND = False
+try:
+    import bs4
+except:
+    BS4_NOT_FOUND = True
 import collections
 import json
 import os
 import shutil
 import subprocess as sub
 import sys
+import textwrap
+import urllib.request
 
 
 def digest(inp):
@@ -29,6 +36,115 @@ def pid2str(pid):
 def timing2float(timing):
     num, prefix = timing.split()
     return float(num) * {'s': 1, 'ms': 1e-3, 'us': 1e-6}[prefix]
+
+
+def soupwalker(soup, p, ps, in_blockquote=False, in_ul=False):
+    image = '![{}](https://projecteuler.net/project/images/{}.gif)'
+
+    for element in soup.contents:
+        if isinstance(element, bs4.Comment):
+            pass
+        elif isinstance(element, bs4.NavigableString):
+            element = element.strip('\r\n').replace('²', '^2')
+            if element:
+                p += element
+        elif element.name in ['a', 'dfn', 'span']:
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+        elif element.name == 'b':
+            if in_blockquote:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            else:
+                p += '**'
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '**'
+        elif element.name == 'br':
+            if in_blockquote:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '\n'
+            elif in_ul:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '\n  '
+            else:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                if p:
+                    ps.append(p)
+                    p = ''
+        elif element.name == 'blockquote':
+            p += '```\n'
+            in_blockquote = True
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            in_blockquote = False
+            p = p.rstrip('\n') + '\n```'
+            ps.append(p)
+            p = ''
+        elif element.name == 'div':
+            if in_blockquote:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '\n'
+            else:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                if p:
+                    ps.append(p)
+                    p = ''
+        elif element.name == 'i':
+            if in_blockquote:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            else:
+                p += '*'
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '*'
+        elif element.name == 'img':
+            if '_le' in element['src']:
+                p += '<='
+            elif '_lt' in element['src']:
+                p += '<'
+            elif '_maps' in element['src']:
+                p += '->'
+            elif '_minus' in element['src']:
+                p += '-'
+            elif '_ne' in element['src']:
+                p += '/='
+            elif '_times' in element['src']:
+                p += '*'
+            elif '_015' in element['src']:
+                p += image.format('p015', 'p_015')
+            else:
+                print('Unexpected image: ' + element['src'])
+                sys.exit(1)
+        elif element.name == 'li' and in_ul:
+            p += '* '
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            p += '\n'
+        elif element.name == 'p':
+            if in_blockquote:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                p += '\n'
+            else:
+                (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+                if p:
+                    ps.append(p)
+                    p = ''
+        elif element.name == 'sub':
+            p += '_'
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+        elif element.name == 'sup':
+            p += '^'
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+        elif element.name == 'ul':
+            in_ul = True
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            in_ul = False
+            ps.append(p.rstrip('\n'))
+            p = ''
+        elif element.name == 'var':
+            p += '`'
+            (p, ps) = soupwalker(element, p, ps, in_blockquote, in_ul)
+            p += '`'
+        else:
+            print('Unexpected tag: ' + element.name)
+            sys.exit(1)
+
+    return (p, ps)
 
 
 def directory(args):
@@ -98,6 +214,21 @@ def problem(args):
 
             for pid in pids:
                 benchmark(pid)
+            sys.exit(0)
+        elif command == 'fetch':
+            if BS4_NOT_FOUND:
+                print('BeautifulSoup4 is required to fetch problem statemets')
+                sys.exit(1)
+
+            try:
+                assert(len(args) == 1)
+                pids = digest(args.pop())
+            except (AssertionError, ValueError):
+                print(fetch_help)
+                sys.exit(1)
+
+            for pid in pids:
+                fetch(pid)
             sys.exit(0)
 
     print(problem_help)
@@ -226,6 +357,38 @@ def benchmark(pid):
     print()
     os.chdir('../../..')
 
+
+def fetch(pid):
+    problem = "https://projecteuler.net/problem={}".format(pid)
+    pid = pid2str(pid)
+
+    if not os.path.exists('/'.join(pid)):
+        print("{} - directory doesn't exist!\n".format(pid))
+        sys.exit(1)
+
+    with urllib.request.urlopen(problem) as url:
+        soup = bs4.BeautifulSoup(url)
+
+    title = '{} - {}'.format(pid, soup.h2.text)
+    soup = soup.find('div', role='problem')
+
+    if soup:
+        p, ps = soupwalker(soup, '', [])
+        assert(not p)
+
+        os.chdir('/'.join(pid))
+
+        with open(pid + '.md', 'w') as f:
+            f.write(title + '\n')
+            f.write('-' * len(title) + '\n\n')
+
+            for p in ps:
+                f.write('\n'.join(textwrap.wrap(p, width=79)) + '\n\n')
+
+        os.chdir('../../..')
+    else:
+        print(pid + ' - problem not found!')
+
 directory_help = """usage: ./directory.py <command> <arg>
 
 available commands are:
@@ -261,7 +424,11 @@ recursively removes empty directories under path"""
 problem_help = """usage: ./problem.py <command> <arg>
 
 available commands are:
-    benchmark   benchmark problem using several programming languages"""
+    benchmark   benchmark problem using several programming languages
+    fetch       fecth problem statement from ProjectEuler"""
 
 benchmark_help = """usage: ./problem.py benchmark <pid|range>
 benchmark problem using several programming languages"""
+
+fetch_help = """usage: ./problem.py fetch <pid|range>
+fecth problem statement from ProjectEuler"""
