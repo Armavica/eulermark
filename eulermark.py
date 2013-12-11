@@ -488,8 +488,10 @@ def table():
         for pid in pids:
             f.write(pid)
             for ext in exts:
-                rel = timings[pid][ext]
-                if rel == 100:
+                rel = timings[pid].get(ext)
+                if rel is None:
+                    f.write(' | -')
+                elif rel == 100:
                     f.write(' | **{}**'.format(min_time))
                 else:
                     f.write(' | {}%'.format(rel))
