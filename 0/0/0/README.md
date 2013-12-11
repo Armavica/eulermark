@@ -1,7 +1,7 @@
 000 - Hello World!
 ------------------
 
-This is a classic.
+Print "Hello World!" to stdout.
 
 Language | Time | Relative
 --- | :---: | :---:

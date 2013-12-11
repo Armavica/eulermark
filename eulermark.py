@@ -399,7 +399,7 @@ def generate(args):
                 assert(len(args) == 1)
                 pids = digest(args.pop())
             except (AssertionError, ValueError):
-                print(benchmark_help)
+                print(ranking_help)
                 sys.exit(1)
 
             for pid in pids:
@@ -407,7 +407,7 @@ def generate(args):
             sys.exit(0)
         elif command == 'table':
             if args:
-                print(fetch_help)
+                print(table_help)
                 sys.exit(1)
 
             table()
@@ -454,7 +454,43 @@ def ranking(pid):
 
 
 def table():
-    pass
+    with open('settings.json') as f:
+        settings = json.load(f)
+
+    exts = settings['valid_extensions']
+    language = settings['language']
+    timings = {}
+    pids = []
+
+    for root, dirs, files in os.walk('.'):
+        for f in files:
+            if f.endswith('.json') and root != '.':
+                with open(os.path.join(root, f)) as _:
+                        timing = json.load(_)
+
+                timing = {key: timing2float(timing[key]) for key in timing}
+                min_t = min(timing.values())
+                timing = {key: int(100 * timing[key] / min_t)
+                          for key in timing}
+
+                pid = f.split('.')[0]
+                timings[pid] = timing
+                pids.append(pid)
+
+    with open('README.md', 'w') as f:
+        f.write('pid ')
+        for ext in exts:
+            f.write('| {} '.format(language[ext]))
+        f.write('\n :---:' + ' | :---:' * len(exts) + '\n')
+        for pid in pids:
+            f.write(pid)
+            for ext in exts:
+                rel = timings[pid][ext]
+                if rel == 100:
+                    f.write(' | **{}%**'.format(rel))
+                else:
+                    f.write(' | {}%'.format(rel))
+            f.write('\n')
 
 directory_help = """usage: ./directory.py <command> <arg>
 
