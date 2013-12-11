@@ -364,7 +364,7 @@ def fetch(pid):
 
     if not os.path.exists('/'.join(pid)):
         print("{} - directory doesn't exist!\n".format(pid))
-        sys.exit(1)
+        return
 
     with urllib.request.urlopen(problem) as url:
         soup = bs4.BeautifulSoup(url)
