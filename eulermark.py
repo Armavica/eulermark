@@ -389,6 +389,73 @@ def fetch(pid):
     else:
         print(pid + ' - problem not found!')
 
+
+def generate(args):
+    if args:
+        command = args.pop(0)
+
+        if command == 'ranking':
+            try:
+                assert(len(args) == 1)
+                pids = digest(args.pop())
+            except (AssertionError, ValueError):
+                print(benchmark_help)
+                sys.exit(1)
+
+            for pid in pids:
+                ranking(pid)
+            sys.exit(0)
+        elif command == 'table':
+            if args:
+                print(fetch_help)
+                sys.exit(1)
+
+            table()
+            sys.exit(0)
+
+    print(generate_help)
+    sys.exit(1)
+
+
+def ranking(pid):
+    pid = pid2str(pid)
+
+    with open('settings.json') as f:
+        settings = json.load(f)
+        language = settings['language']
+
+    if not os.path.exists('/'.join(pid)):
+        print("{} - directory doesn't exist!\n".format(pid))
+        return
+
+    os.chdir('/'.join(pid))
+
+    if not os.path.exists(pid + '.json'):
+        print("{} - timing file (.json) doesn't exist!\n".format(pid))
+        os.chdir('../../..')
+        return
+
+    with open(pid + '.json') as f:
+        timing = json.load(f)
+
+    timing = collections.OrderedDict(sorted(timing.items(),
+                                     key=lambda x: timing2float(x[1])))
+    min_t = timing2float(list(timing.items())[0][1])
+
+    shutil.copyfile(pid + '.md', 'README.md')
+
+    with open('README.md', 'a') as f:
+        f.write('Language | Time | Relative\n--- | :---: | :---:\n')
+        for ext, time in timing.items():
+            t = timing2float(time)
+            f.write('{} | {} | {}%\n'.format(language[ext],
+                                             time,
+                                             int(100 * t / min_t)))
+
+
+def table():
+    pass
+
 directory_help = """usage: ./directory.py <command> <arg>
 
 available commands are:
@@ -432,3 +499,15 @@ benchmark problem using several programming languages"""
 
 fetch_help = """usage: ./problem.py fetch <pid|range>
 fecth problem statement from ProjectEuler"""
+
+generate_help = """usage: ./generate.py <command> [<arg>]
+
+available commands are:
+    ranking     generate a ranking from a problem benchmark results
+    table       aggregates all the benchmark results in a table"""
+
+ranking_help = """usage: ./generate.py ranking <pid|range>
+generate a ranking from a problem benchmark results"""
+
+table_help = """usage: ./generate.py table
+aggregates all the benchmark results in a table"""
