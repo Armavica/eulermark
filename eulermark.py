@@ -1,3 +1,5 @@
+# Copyright (C) 2013 Jorge Aparicio
+
 BS4_NOT_FOUND = False
 try:
     import bs4

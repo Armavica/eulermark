@@ -1,5 +1,7 @@
 #!/usr/bin/python3.3
 
+# Copyright (C) 2013 Jorge Aparicio
+
 import sys
 from eulermark import directory
 
