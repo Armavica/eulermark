@@ -363,10 +363,9 @@ def benchmark(pid):
 def fetch(pid):
     problem = "https://projecteuler.net/problem={}".format(pid)
     pid = pid2str(pid)
+    pdir = '/'.join(pid)
 
-    if not os.path.exists('/'.join(pid)):
-        print("{} - directory doesn't exist!\n".format(pid))
-        return
+    os.makedirs(pdir, exist_ok=True)
 
     with urllib.request.urlopen(problem) as url:
         soup = bs4.BeautifulSoup(url)
@@ -378,7 +377,7 @@ def fetch(pid):
         p, ps = soupwalker(soup, '', [])
         assert(not p)
 
-        os.chdir('/'.join(pid))
+        os.chdir(pdir)
 
         with open(pid + '.md', 'w') as f:
             f.write(title + '\n')
