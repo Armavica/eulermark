@@ -367,6 +367,9 @@ def fetch(pid):
 
     os.makedirs(pdir, exist_ok=True)
 
+    print(pid + ' - Fetching...', end=' ')
+    sys.stdout.flush()
+
     with urllib.request.urlopen(problem) as url:
         soup = bs4.BeautifulSoup(url)
 
@@ -387,8 +390,9 @@ def fetch(pid):
                 f.write('\n'.join(textwrap.wrap(p, width=79)) + '\n\n')
 
         os.chdir('../../..')
+        print('DONE')
     else:
-        print(pid + ' - problem not found!')
+        print('NOT FOUND!')
 
 
 def generate(args):
