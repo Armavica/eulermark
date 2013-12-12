@@ -1,24 +1,27 @@
 {
-  "valid_extensions": [".hs", ".py", ".rb", ".rs"],
+  "valid_extensions": [".c", ".hs", ".py", ".rb", ".rs"],
   "timeout": 60,
   "language": {
+    ".c": "C",
     ".hs": "haskell",
     ".py": "python",
     ".rb": "ruby",
     ".rs": "rust"
   },
   "compiler": {
+    ".c": ["gcc", "-std=c11"],
     ".hs": ["ghc"],
     ".py": ["python3.3", "-m"],
     ".rs": ["rustc"]
   },
-  "input_needs_extension": [".hs", ".rs"],
+  "input_needs_extension": [".c", ".hs", ".rs"],
   "interpreter": {
     ".py": ["python3.3"],
     ".rb": ["ruby"]
   },
   "output_needs_extension": [ ".py", ".rb" ],
   "byproduct": {
+    ".c": [""],
     ".hs": ["", ".hi", ".o"],
     ".py": "__pycache__",
     ".rs": [""]
