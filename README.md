@@ -11,12 +11,14 @@ for more languages easily, and are encouraged to contribute back.
 And hopefully the `contrib` branch will become a database of solutions and
 benchmark results.
 
-## What does this exactly do?
+## TL; DR
 
 A ~~picture~~ table is worth a thousand words - Head to the `contrib` branch,
-take a look at the table drawn in the README.md, then browse to any problem,
-e.g. to see problem 123, browse to the path 1/2/3 and if you like what you see
-then come back.
+you'll see all the benchmark results aggregated in a table, and if you click
+any of the pids (problem ids) you'll see the ranking of solutions for that
+particular problem.
+
+## What does this exactly do?
 
 eulermark uses a directory layout that looks like this:
 
