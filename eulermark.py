@@ -455,7 +455,7 @@ def ranking(pid):
             t = timing2float(time)
             f.write('{} | {} | {}%\n'.format(language[ext],
                                              time,
-                                             int(100 * t / min_t)))
+                                             round(100 * t / min_t)))
 
 
 def table():
@@ -479,7 +479,7 @@ def table():
                               key=lambda x: timing2float(timing[x]))
                 min_time = timing[min_ext]
                 min_t = timing2float(min_time)
-                timing = {key: int(100 * timing2float(timing[key]) / min_t)
+                timing = {key: round(100 * timing2float(timing[key]) / min_t)
                           for key in timing}
 
                 pid = f.split('.')[0]
