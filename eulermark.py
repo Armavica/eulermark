@@ -149,6 +149,17 @@ def soupwalker(soup, p, ps, in_blockquote=False, in_ul=False):
     return (p, ps)
 
 
+def count_lines(filename, comment):
+    count = 0
+
+    with open(filename) as f:
+        for line in f:
+            if line.strip() and not line.startswith(comment):
+                count += 1
+
+    return count
+
+
 def directory(args):
     if args:
         command = args.pop(0)
@@ -428,6 +439,7 @@ def ranking(pid):
     with open('settings.json') as f:
         settings = json.load(f)
         language = settings['language']
+        comment = settings['comment']
 
     if not os.path.exists('/'.join(pid)):
         print("{} - directory doesn't exist!\n".format(pid))
@@ -450,12 +462,15 @@ def ranking(pid):
     shutil.copyfile(pid + '.md', 'README.md')
 
     with open('README.md', 'a') as f:
-        f.write('Language | Time | Relative\n--- | :---: | :---:\n')
+        f.write('Language | Time | Relative | LoC\n')
+        f.write('--- | :---: | :---: | :---:\n')
         for ext, time in timing.items():
             t = timing2float(time)
-            f.write('{} | {} | {}%\n'.format(language[ext],
-                                             time,
-                                             round(100 * t / min_t)))
+            f.write('{} | {} | {}% | {}\n'.format(language[ext],
+                                                  time,
+                                                  round(100 * t / min_t),
+                                                  count_lines(pid + ext,
+                                                              comment[ext])))
 
 
 def table():
