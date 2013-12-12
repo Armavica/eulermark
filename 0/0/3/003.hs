@@ -12,7 +12,7 @@ primeFactors :: Integral a => a -> [a]
 primeFactors n = primeFactors' n 2
 
 primeFactors' :: Integral a => a -> a -> [a]
-primeFactors' 1 _ = [1]
+primeFactors' 1 _ = []
 primeFactors' m n
   | m `rem` n == 0 = n:primeFactors' (m `div` n) n
   | otherwise      = primeFactors' m (n+1)
