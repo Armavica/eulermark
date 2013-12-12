@@ -508,7 +508,7 @@ def table():
         for ext in exts:
             f.write('| {} '.format(language[ext]))
         f.write('\n :---:' + ' | :---:' * len(exts) + '\n')
-        for pid in pids:
+        for pid in sorted(pids):
             f.write('[{}]({})'.format(pid, '/'.join(pid)))
             for ext in exts:
                 rel = timings[pid].get(ext)
