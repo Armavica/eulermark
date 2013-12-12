@@ -464,6 +464,8 @@ def table():
 
     exts = settings['valid_extensions']
     language = settings['language']
+    min_times = {}
+    min_exts = {}
     timings = {}
     pids = []
 
@@ -473,14 +475,17 @@ def table():
                 with open(os.path.join(root, f)) as _:
                         timing = json.load(_)
 
-                min_time = min(timing.values(), key=timing2float)
-                timing = {key: timing2float(timing[key]) for key in timing}
-                min_t = min(timing.values())
-                timing = {key: int(100 * timing[key] / min_t)
+                min_ext = min(timing,
+                              key=lambda x: timing2float(timing[x]))
+                min_time = timing[min_ext]
+                min_t = timing2float(min_time)
+                timing = {key: int(100 * timing2float(timing[key]) / min_t)
                           for key in timing}
 
                 pid = f.split('.')[0]
                 timings[pid] = timing
+                min_times[pid] = min_time
+                min_exts[pid] = min_ext
                 pids.append(pid)
 
     with open('README.md', 'w') as f:
@@ -492,12 +497,12 @@ def table():
             f.write(pid)
             for ext in exts:
                 rel = timings[pid].get(ext)
-                if rel is None:
-                    f.write(' | -')
-                elif rel == 100:
-                    f.write(' | **{}**'.format(min_time))
-                else:
+                if ext == min_exts[pid]:
+                    f.write(' | **{}**'.format(min_times[pid]))
+                elif rel:
                     f.write(' | {}%'.format(rel))
+                else:
+                    f.write(' | -')
             f.write('\n')
 
 directory_help = """usage: ./directory.py <command> <arg>
