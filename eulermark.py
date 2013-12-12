@@ -509,7 +509,7 @@ def table():
             f.write('| {} '.format(language[ext]))
         f.write('\n :---:' + ' | :---:' * len(exts) + '\n')
         for pid in pids:
-            f.write('[{}](tree/master/{})'.format(pid, '/'.join(pid)))
+            f.write('[{}]({})'.format(pid, '/'.join(pid)))
             for ext in exts:
                 rel = timings[pid].get(ext)
                 if ext == min_exts[pid]:
