@@ -11,6 +11,7 @@ four million, find the sum of the even-valued terms.
 
 Language | Time | Relative | LoC
 --- | :---: | :---: | :---:
-C | 621 us | 100% | 25
-haskell | 1.24 ms | 200% | 14
-python | 23.2 ms | 3736% | 15
+C | 626 us | 100% | 25
+haskell | 1.25 ms | 200% | 14
+rust | 7.43 ms | 1187% | 21
+python | 22.9 ms | 3658% | 15
