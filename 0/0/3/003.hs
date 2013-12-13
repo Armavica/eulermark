@@ -1,18 +1,20 @@
 -- Copyright (C) 2013 Jorge Aparicio
 
+import Data.Numbers.Primes (primes)
+
 main :: IO()
 main
   = print
-  . maximum
+  . last
   . primeFactors
-  $ n
-    where n = 600851475143 :: Int
+  $ number
+    where number = 600851475143 :: Int
 
 primeFactors :: Integral a => a -> [a]
-primeFactors n = primeFactors' n 2
+primeFactors n = factor n primes
 
-primeFactors' :: Integral a => a -> a -> [a]
-primeFactors' 1 _ = []
-primeFactors' m n
-  | m `rem` n == 0 = n:primeFactors' (m `div` n) n
-  | otherwise      = primeFactors' m (n+1)
+factor :: Integral a => a -> [a] -> [a]
+factor n (p:ps)
+  | p*p > n        = [n]
+  | n `mod` p == 0 = p : factor (n `div` p) (p:ps)
+  | otherwise      = factor n ps

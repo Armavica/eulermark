@@ -7,4 +7,4 @@ What is the largest prime factor of the number 600851475143 ?
 
 Language | Time | Relative | LoC
 --- | :---: | :---: | :---:
-haskell | 1.94 ms | 100% | 14
+haskell | 1.51 ms | 100% | 15
