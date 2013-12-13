@@ -295,7 +295,7 @@ def benchmark(pid):
                 if shutil.which(compiler[ext][0]):
                     print('  Compiling...', end=' ')
                     inp = pid + (ext if ext in input_needs_extension else '')
-                    o_flag = ['-o', pid] if ext in ['.c'] else []
+                    o_flag = ['-o', pid] if ext in ['.c', '.cpp'] else []
                     if sub.call(compiler[ext] + o_flag + [inp],
                                 stdout=sub.DEVNULL):
                         print('FAIL!\n  Skipping\n')
