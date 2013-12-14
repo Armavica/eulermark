@@ -5,8 +5,9 @@ written in several languages and display the results in tables using github
 flavored markdown
 ([GFM](https://help.github.com/articles/github-flavored-markdown)).
 
-Currently C, Haskell, Python, Ruby, Rust are supported. But you can add support
-for more languages easily, and are encouraged to contribute back.
+Currently C, C++, CoffeeScript, Haskell, Python, Ruby, Rust are supported. But
+you can add support for more languages easily, and are encouraged to contribute
+back.
 
 And hopefully the `contrib` branch will become a database of solutions and
 benchmark results.

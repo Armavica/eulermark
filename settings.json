@@ -1,9 +1,10 @@
 {
-  "valid_extensions": [".c", ".cpp", ".hs", ".py", ".rb", ".rs"],
+  "valid_extensions": [".c", ".cpp", ".coffee", ".hs", ".py", ".rb", ".rs"],
   "timeout": 60,
   "language": {
     ".c": "C",
     ".cpp": "C++",
+    ".coffee": "CoffeeScript",
     ".hs": "haskell",
     ".py": "python",
     ".rb": "ruby",
@@ -12,19 +13,26 @@
   "compiler": {
     ".c": ["gcc", "-std=c11"],
     ".cpp": ["g++", "-std=c++11"],
+    ".coffee": ["coffee", "-c"],
     ".hs": ["ghc"],
     ".py": ["python3.3", "-m"],
     ".rs": ["rustc"]
   },
-  "input_needs_extension": [".c", ".cpp", ".hs", ".rs"],
+  "input_needs_extension": [".c", ".cpp", ".coffee", ".hs", ".rs"],
   "interpreter": {
+    ".coffee": ["node"],
     ".py": ["python3.3"],
     ".rb": ["ruby"]
   },
-  "output_needs_extension": [ ".py", ".rb" ],
+  "interpreter_extension": {
+    ".coffee": ".js",
+    ".py": ".py",
+    ".rb": ".rb"
+  },
   "byproduct": {
     ".c": [""],
     ".cpp": [""],
+    ".coffee": [".js"],
     ".hs": ["", ".hi", ".o"],
     ".py": "__pycache__",
     ".rs": [""]
@@ -32,6 +40,7 @@
   "comment": {
     ".c": "//",
     ".cpp": "//",
+    ".coffee": "#",
     ".hs": "--",
     ".py": "#",
     ".rb": "#",

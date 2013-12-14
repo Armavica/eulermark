@@ -259,7 +259,7 @@ def benchmark(pid):
         compiler = settings["compiler"]
         input_needs_extension = settings["input_needs_extension"]
         interpreter = settings["interpreter"]
-        output_needs_extension = settings["output_needs_extension"]
+        interpreter_extension = settings["interpreter_extension"]
         byproduct = settings["byproduct"]
 
     if os.path.exists('/'.join(pid)):
@@ -307,7 +307,7 @@ def benchmark(pid):
 
             # validate
             print('  Validating...', end=' ')
-            out = './' + pid + (ext if ext in output_needs_extension else '')
+            out = './' + pid + interpreter_extension.get(ext, '')
             try:
                 sol = sub.check_output(interpreter.get(ext, []) + [out],
                                        timeout=timeout,
