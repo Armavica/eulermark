@@ -15,7 +15,8 @@ numbers and the square of the sum is 3025 - 385 = 2640.
 Find the difference between the sum of the squares of the first one hundred
 natural numbers and the square of the sum.
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-haskell | 1.24 ms | 100% | 9
-python | 22.9 ms | 1847% | 1
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+C | **579 us** | 100% | **1.91 MB** | 100% | 11
+haskell | 1.14 ms | 197% | 6.23 MB | 326% | 9
+python | 22.7 ms | 3921% | 24.6 MB | 1288% | 1
