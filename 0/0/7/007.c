@@ -7,7 +7,7 @@
 #define TARGET 10001
 
 int main() {
-  long long i, j;
+  long i, j;
   int n = 0;
   char *sieve;
 

@@ -3,8 +3,7 @@
 #include <stdio.h>
 
 int main() {
-  long long n = 600851475143;
-  int factor = 2;
+  long n = 600851475143, factor = 2;
 
   while (1) {
     if (n % factor == 0)
