@@ -6,6 +6,7 @@ the 6th prime is 13.
 
 What is the 10 001st prime number?
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-haskell | 11.2 ms | 100% | 3
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+C | **2.38 ms** | 100% | **2.41 MB** | 100% | 25
+haskell | 11.1 ms | 466% | 10.0 MB | 415% | 3
