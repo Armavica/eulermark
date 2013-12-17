@@ -7,6 +7,7 @@ except:
     BS4_NOT_FOUND = True
 import collections
 import json
+import math
 import os
 import shutil
 import subprocess as sub
@@ -35,9 +36,13 @@ def pid2str(pid):
     return '{0:0>3}'.format(pid)
 
 
-def timing2float(timing):
-    num, prefix = timing.split()
+def tim2float(tim):
+    num, prefix = tim.split()
     return float(num) * {'s': 1, 'ms': 1e-3, 'us': 1e-6}[prefix]
+
+
+def mem2float(mem):
+    return float(mem.split(' ')[0])
 
 
 def soupwalker(soup, p, ps, in_blockquote=False, in_ul=False):
@@ -255,6 +260,7 @@ def benchmark(pid):
         settings = json.load(f)
         valid_extensions = settings['valid_extensions']
         language = settings['language']
+        time = settings['time']
         timeout = settings['timeout']
         compiler = settings["compiler"]
         input_needs_extension = settings["input_needs_extension"]
@@ -285,7 +291,8 @@ def benchmark(pid):
     with open(pid + '.ans') as f:
         ans = f.read()
 
-    timing = {}
+    tims = {}
+    mems = {}
     for ext in valid_extensions:
         if pid + ext in contents:
             print('Found {} ({})'.format(language[ext], ext))
@@ -323,17 +330,31 @@ def benchmark(pid):
             if sol.decode('utf-8') == ans:
                 print('CORRECT!\n  Benchmarking...', end=' ')
                 setup = 'import subprocess as sub'
-                stmt = 'sub.call({}, stdout=sub.DEVNULL)'.format(
-                    interpreter.get(ext, []) + [out])
+                exe = interpreter.get(ext, []) + [out]
+                stmt = 'sub.call({}, stdout=sub.DEVNULL)'.format(exe)
                 timeit = sub.check_output(['python3.3',
                                            '-m', 'timeit',
                                            '-s', setup, stmt])
 
                 timeit = timeit.decode('utf-8').rstrip('\n')
-                print(timeit)
+                print(timeit, end=', ')
 
                 num, prefix = timeit.split(':')[1].split()[:2]
-                timing[ext] = ' '.join([num, prefix.rstrip('ec')])
+                tims[ext] = ' '.join([num, prefix.rstrip('ec')])
+
+                mem = 0
+                for i in range(3):
+                    p = sub.Popen([time, '-f', '%M'] + exe,
+                                  stderr=sub.PIPE, stdout=sub.DEVNULL)
+                    p.wait()
+                    s = p.stderr.read().decode('utf-8').rstrip('\n')
+                    if int(s) > mem:
+                        mem = int(s)
+                mem /= 1024
+                n = 2 - int(math.log10(mem))
+                mem = ('{:.' + str(n) + 'f} MB').format(mem)
+                mems[ext] = mem
+                print('max of 3:', mem)
 
             elif sol is not None:
                 print('WRONG!\n  Skipping')
@@ -356,16 +377,18 @@ def benchmark(pid):
 
             print()
 
-    if timing:
-        timing = collections.OrderedDict(sorted(timing.items(),
-                                         key=lambda x: timing2float(x[1])))
+    if tims:
+        tims = collections.OrderedDict(sorted(tims.items(),
+                                       key=lambda x: tim2float(x[1])))
+        mems = collections.OrderedDict(sorted(mems.items(),
+                                       key=lambda x: mem2float(x[1])))
 
         with open(pid + '.json', 'w') as f:
-            json.dump(timing, f, indent=2)
+            json.dump({'tim': tims, 'mem': mems}, f, indent=2)
 
         print('Summary')
-        for key, value in timing.items():
-            print('  {}\t{}'.format(key, value))
+        for key, value in tims.items():
+            print('{}\t\t{}\t\t{}'.format(key, value, mems[key]))
 
     print()
     os.chdir('../../..')
@@ -453,24 +476,36 @@ def ranking(pid):
         return
 
     with open(pid + '.json') as f:
-        timing = json.load(f)
+        results = json.load(f)
 
-    timing = collections.OrderedDict(sorted(timing.items(),
-                                     key=lambda x: timing2float(x[1])))
-    min_t = timing2float(list(timing.items())[0][1])
+    tims = results['tim']
+    mems = results['mem']
+
+    tims = collections.OrderedDict(sorted(tims.items(),
+                                   key=lambda x: tim2float(x[1])))
+    mems = collections.OrderedDict(sorted(mems.items(),
+                                   key=lambda x: mem2float(x[1])))
+    min_t_ext = min(tims, key=lambda x: tim2float(tims[x]))
+    min_m_ext = min(mems, key=lambda x: mem2float(mems[x]))
+    min_t = tim2float(tims[min_t_ext])
+    min_m = mem2float(mems[min_m_ext])
 
     shutil.copyfile(pid + '.md', 'README.md')
 
     with open('README.md', 'a') as f:
-        f.write('Language | Time | Relative | LoC\n')
-        f.write('--- | :---: | :---: | :---:\n')
-        for ext, time in timing.items():
-            t = timing2float(time)
-            f.write('{} | {} | {}% | {}\n'.format(language[ext],
-                                                  time,
-                                                  round(100 * t / min_t),
-                                                  count_lines(pid + ext,
-                                                              comment[ext])))
+        f.write('Language | Time | rTime | Mem | rMem | LoC\n')
+        f.write('--- | :---: | :---: | :---: | :---: | :---:\n')
+        for ext, tim in tims.items():
+            mem = mems[ext]
+            t = tim2float(tim)
+            m = mem2float(mem)
+            f.write('{} | {} | {}% | {} | {}% | {}\n'.
+                    format(language[ext],
+                           tim if ext != min_t_ext else '**' + tim + '**',
+                           round(100 * t / min_t),
+                           mem if ext != min_m_ext else '**' + mem + '**',
+                           round(100 * m / min_m),
+                           count_lines(pid + ext, comment[ext])))
 
 
 def table():
@@ -479,28 +514,28 @@ def table():
 
     exts = settings['valid_extensions']
     language = settings['language']
-    min_times = {}
-    min_exts = {}
-    timings = {}
+    min_tims = {}
+    min_t_exts = {}
+    timss = {}
     pids = []
 
     for root, dirs, files in os.walk('.'):
         for f in files:
             if f.endswith('.json') and root != '.':
                 with open(os.path.join(root, f)) as _:
-                        timing = json.load(_)
+                        results = json.load(_)
 
-                min_ext = min(timing,
-                              key=lambda x: timing2float(timing[x]))
-                min_time = timing[min_ext]
-                min_t = timing2float(min_time)
-                timing = {key: round(100 * timing2float(timing[key]) / min_t)
-                          for key in timing}
+                tims = results['tim']
+                min_t_ext = min(tims, key=lambda x: tim2float(tims[x]))
+                min_tim = tims[min_t_ext]
+                min_t = tim2float(min_tim)
+                tims = {key: round(100 * tim2float(tims[key]) / min_t)
+                        for key in tims}
 
                 pid = f.split('.')[0]
-                timings[pid] = timing
-                min_times[pid] = min_time
-                min_exts[pid] = min_ext
+                timss[pid] = tims
+                min_tims[pid] = min_tim
+                min_t_exts[pid] = min_t_ext
                 pids.append(pid)
 
     with open('README.md', 'w') as f:
@@ -511,9 +546,9 @@ def table():
         for pid in sorted(pids):
             f.write('[{}]({})'.format(pid, '/'.join(pid)))
             for ext in exts:
-                rel = timings[pid].get(ext)
-                if ext == min_exts[pid]:
-                    f.write(' | **{}**'.format(min_times[pid]))
+                rel = timss[pid].get(ext)
+                if ext == min_t_exts[pid]:
+                    f.write(' | **{}**'.format(min_tims[pid]))
                 elif rel:
                     f.write(' | {}%'.format(rel))
                 else:

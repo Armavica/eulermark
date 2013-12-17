@@ -1,4 +1,5 @@
 {
+  "time": "/usr/bin/time",
   "valid_extensions": [".c", ".cpp", ".coffee", ".hs", ".py", ".rb", ".rs"],
   "timeout": 60,
   "language": {
