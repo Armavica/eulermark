@@ -3,20 +3,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 2000000
+#define ARRAY_SIZE 1000000
+#define SIEVE_SIZE 2*ARRAY_SIZE + 1
 
 int main() {
-  long i, j, n = 0;
+  long i, j, n = 2, p;
   char *sieve;
 
-  sieve = (char *)calloc(SIZE, sizeof(char));
+  sieve = (char *)calloc(ARRAY_SIZE, sizeof(char));
 
-  for (i = 2; i < SIZE; i++) {
+  for (i = 1; i < ARRAY_SIZE; i++) {
     if (sieve[i] == 0) {
-      n += i;
+      p = 2*i + 1;
+      n += p;
 
-      for (j = i*i; j < SIZE; j += i)
-        sieve[j] = 1;
+      for (j = p*p; j < SIEVE_SIZE; j += 2*p)
+        sieve[(j - 1) / 2] = 1;
     }
   }
 
