@@ -8,5 +8,5 @@ What is the 10 001st prime number?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **2.38 ms** | 100% | **2.41 MB** | 100% | 25
-haskell | 11.1 ms | 466% | 10.0 MB | 415% | 3
+C | **1.5 ms** | 100% | **2.47 MB** | 100% | 27
+haskell | 11.2 ms | 747% | 10.0 MB | 405% | 3
