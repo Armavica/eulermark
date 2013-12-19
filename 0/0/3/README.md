@@ -7,5 +7,6 @@ What is the largest prime factor of the number 600851475143 ?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **611 us** | 100% | **1.91 MB** | 100% | 19
-haskell | 1.51 ms | 247% | 8.47 MB | 443% | 15
+C | **605 us** | 100% | **1.91 MB** | 100% | 18
+haskell | 1.52 ms | 251% | 8.47 MB | 443% | 15
+rust | 7.46 ms | 1233% | 133 MB | 6963% | 28

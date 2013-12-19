@@ -26,3 +26,4 @@ impl Iterator<int> for Fibonacci {
     Some(replace(&mut self.curr, new_curr))
   }
 }
+
