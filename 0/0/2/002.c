@@ -2,33 +2,19 @@
 
 #include <stdio.h>
 
-unsigned int fibonacci(unsigned int n) {
-  unsigned int a = 1;
-  unsigned int b = 1;
-  unsigned int t;
-
-  while (--n) {
-    t = a + b;
-    a = b;
-    b = t;
-  }
-
-  return b;
-}
-
 int main() {
-  int acc = 0;
+  int ans = 0, curr = 1, next = 2, tmp;
 
-  for (int i = 1; ; i++) {
-    int fib = fibonacci(i);
+  while (curr < 4000000) {
+    if (curr % 2 == 0)
+      ans += curr;
 
-    if (fib > 4000000) {
-      break;
-    } else if (fib % 2 == 0) {
-      acc += fib;
-    }
+    tmp = next;
+    next += curr;
+    curr = tmp;
   }
 
-  printf("%d\n", acc);
+  printf("%d\n", ans);
+
   return 0;
 }
