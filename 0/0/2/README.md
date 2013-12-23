@@ -11,8 +11,8 @@ four million, find the sum of the even-valued terms.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **619 us** | 100% | **1.91 MB** | 100% | 13
-haskell | 1.22 ms | 197% | 6.14 MB | 321% | 14
-rust | 7.37 ms | 1191% | 133 MB | 6963% | 21
-CoffeeScript | 23.3 ms | 3764% | 38.0 MB | 1990% | 10
-python | 23.6 ms | 3813% | 24.8 MB | 1298% | 15
+C | **616 us** | 100% | **1.91 MB** | 100% | 13
+haskell | 1.22 ms | 198% | 6.09 MB | 319% | 10
+rust | 7.29 ms | 1183% | 133 MB | 6963% | 21
+python | 22.5 ms | 3653% | 24.8 MB | 1298% | 15
+CoffeeScript | 23.1 ms | 3750% | 38.0 MB | 1990% | 10
