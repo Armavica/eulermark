@@ -35,7 +35,7 @@ divisors
   . factorize
 
 factorize :: Int -> [(Int,Int)]
-factorize n = map (head &&& length) . group . primeFactors $ n
+factorize = map (head &&& length) . group . primeFactors
 
 primeFactors :: Int -> [Int]
 primeFactors n = factor n primes'
