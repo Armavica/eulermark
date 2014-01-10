@@ -4,13 +4,10 @@ use std::iter::AdditiveIterator;
 use std::util::replace;
 
 fn main() {
-  let limit = 4000000;
-
-  println(fibonacci().
-          take_while(|&x| x < limit).
-          filter(|x| x % 2 == 0).
-          sum().
-          to_str());
+  println!("{}", fibonacci().
+                 take_while(|&x| x < 4000000).
+                 filter(|x| x % 2 == 0).
+                 sum());
 }
 
 struct Fibonacci { curr: int, next: int }
