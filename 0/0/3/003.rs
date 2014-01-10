@@ -1,12 +1,7 @@
 // Copyright (C) 2013 Jorge Aparicio
 
 fn main() {
-  let num = 600851475143;
-
-  println(factorize(num)
-          .last()
-          .unwrap()
-          .to_str());
+  println!("{}", factorize(600851475143).last().unwrap());
 }
 
 struct Factorize { num: int, factor: int }
