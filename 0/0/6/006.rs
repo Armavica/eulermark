@@ -6,7 +6,7 @@ fn main() {
   let sumSquared = square(range(1, 101).sum());
   let sumOfSquares = range(1, 101).map(square).sum();
 
-  println((sumSquared - sumOfSquares).to_str())
+  println!("{}", sumSquared - sumOfSquares);
 }
 
 fn square(a: int) -> uint {

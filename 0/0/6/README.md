@@ -17,7 +17,7 @@ natural numbers and the square of the sum.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **611 us** | 100% | **1.91 MB** | 100% | 11
-haskell | 1.18 ms | 193% | 6.23 MB | 326% | 9
-rust | 1.66 ms | 272% | 6.38 MB | 334% | 9
-python | 22.6 ms | 3699% | 24.6 MB | 1288% | 1
+C | **606 us** | 100% | **1.91 MB** | 100% | 11
+haskell | 1.2 ms | 198% | 6.22 MB | 326% | 9
+rust | 1.64 ms | 271% | 6.22 MB | 326% | 9
+python | 23.6 ms | 3894% | 24.8 MB | 1298% | 1
