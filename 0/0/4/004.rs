@@ -13,7 +13,7 @@ fn main() {
     }
   }
 
-  println(max.to_str());
+  println!("{}", max);
 }
 
 fn isPalindrome(n: int) -> bool {
