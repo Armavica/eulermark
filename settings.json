@@ -12,12 +12,12 @@
     ".rs": "rust"
   },
   "compiler": {
-    ".c": ["gcc", "-std=c11"],
-    ".cpp": ["g++", "-std=c++11"],
+    ".c": ["gcc", "-std=c11", "-O2"],
+    ".cpp": ["g++", "-std=c++11", "-O2"],
     ".coffee": ["coffee", "-c"],
-    ".hs": ["ghc"],
-    ".py": ["python3.3", "-m"],
-    ".rs": ["rustc"]
+    ".hs": ["ghc", "-O2"],
+    ".py": ["python3.3", "-O", "-m"],
+    ".rs": ["rustc", "-O"]
   },
   "input_needs_extension": [".c", ".cpp", ".coffee", ".hs", ".rs"],
   "interpreter": {
