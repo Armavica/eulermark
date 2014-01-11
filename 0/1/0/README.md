@@ -7,5 +7,5 @@ Find the sum of all the primes below two million.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **12.7 ms** | 100% | **5.50 MB** | 100% | 20
-haskell | 343 ms | 2701% | 93.2 MB | 1695% | 8
+C | **5.58 ms** | 100% | **5.50 MB** | 100% | 20
+haskell | 150 ms | 2688% | 13.8 MB | 251% | 8

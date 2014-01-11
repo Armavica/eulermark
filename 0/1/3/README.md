@@ -204,7 +204,7 @@ numbers.
 
 53503534226472524250874054075591789781264330331690
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-haskell | 2.86 ms | 100% | 5
-python | 23.6 ms | 825% | 2
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+haskell | **2.59 ms** | 100% | **9.56 MB** | 100% | 5
+python | 22.8 ms | 880% | 24.9 MB | 260% | 2

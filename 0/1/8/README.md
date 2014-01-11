@@ -53,4 +53,4 @@ requires a clever method! ;o)
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **1.6 ms** | 100% | **8.77 MB** | 100% | 13
+haskell | **1.63 ms** | 100% | **8.77 MB** | 100% | 13

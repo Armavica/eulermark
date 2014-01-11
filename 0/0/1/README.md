@@ -8,10 +8,10 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **573 us** | 100% | **1.91 MB** | 100% | 11
-C++ | 1.32 ms | 230% | 4.56 MB | 239% | 12
-haskell | 1.33 ms | 232% | 7.30 MB | 382% | 9
-rust | 1.72 ms | 300% | 6.27 MB | 328% | 4
-ruby | 18.2 ms | 3176% | 25.9 MB | 1356% | 1
-CoffeeScript | 23.1 ms | 4031% | 37.8 MB | 1979% | 2
-python | 24.3 ms | 4241% | 24.8 MB | 1298% | 3
+C | **577 us** | 100% | **1.91 MB** | 100% | 11
+haskell | 1.21 ms | 210% | 6.19 MB | 324% | 9
+C++ | 1.37 ms | 237% | 4.55 MB | 238% | 12
+rust | 1.62 ms | 281% | 6.31 MB | 330% | 4
+ruby | 18.2 ms | 3154% | 25.9 MB | 1356% | 1
+CoffeeScript | 23.3 ms | 4038% | 37.8 MB | 1979% | 2
+python | 24.8 ms | 4298% | 24.8 MB | 1298% | 3

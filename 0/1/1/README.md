@@ -51,5 +51,5 @@ What is the greatest product of four adjacent numbers in the same direction
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **5.07 ms** | 100% | **11.9 MB** | 100% | 33
-python | 590 ms | 11637% | 542 MB | 4555% | 21
+haskell | **2.45 ms** | 100% | **8.94 MB** | 100% | 33
+python | 591 ms | 24122% | 612 MB | 6846% | 21

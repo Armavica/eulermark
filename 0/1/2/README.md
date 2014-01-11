@@ -17,7 +17,7 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over five hundred
 divisors?
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-haskell | 482 ms | 100% | 19
-python | 621 ms | 129% | 28
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+haskell | **18.7 ms** | 100% | **9.41 MB** | 100% | 19
+python | 631 ms | 3374% | 25.0 MB | 266% | 28

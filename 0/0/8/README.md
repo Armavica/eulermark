@@ -43,6 +43,6 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 
 71636269561882670428252483600823257530420752963450
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-haskell | 1.83 ms | 100% | 10
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+haskell | **1.52 ms** | 100% | **8.72 MB** | 100% | 10

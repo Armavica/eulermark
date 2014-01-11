@@ -12,8 +12,8 @@ There exists exactly one Pythagorean triplet for which `a` + `b` + `c` = 1000.
 
 Find the product `abc`.
 
-Language | Time | Relative | LoC
---- | :---: | :---: | :---:
-C | 722 us | 100% | 15
-haskell | 4.06 ms | 562% | 11
-python | 44.1 ms | 6108% | 5
+Language | Time | rTime | Mem | rMem | LoC
+--- | :---: | :---: | :---: | :---: | :---:
+C | **627 us** | 100% | **1.91 MB** | 100% | 15
+haskell | 1.76 ms | 281% | 8.22 MB | 430% | 11
+python | 44.4 ms | 7081% | 24.8 MB | 1298% | 5
