@@ -2,38 +2,36 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
-#define ARRAY_SIZE 100000
-#define SIEVE_SIZE 2 * ARRAY_SIZE + 1
-#define TARGET 10001
+static int size = 100000;
+static int target = 10000;
 
 int main() {
-  long i, j, p;
-  int n = 1;
-  char *sieve;
+  int i, count = 1;
+  long j, p;
+  bool *sieve = (bool *)calloc(size, sizeof(bool));
 
-  sieve = (char *)calloc(ARRAY_SIZE, sizeof(char));
+  for (i = 0; i < size; i++) {
+    if (sieve[i] == false) {
+      p = 2*i + 3;
 
-  for (i = 1; i < ARRAY_SIZE; i++) {
-    if (sieve[i] == 0) {
-      p = 2*i + 1;
-
-      n++;
-
-      if (n == TARGET)
+      if (count == target) {
+        printf("%d\n", p);
         break;
+      }
 
-      for (j = p*p; j < SIEVE_SIZE; j += 2*p)
-        sieve[(j - 1) / 2] = 1;
+      for (j = p*p; j < 2*size + 3; j += 2*p) {
+        /*printf("*%d\n", j);*/
+        sieve[(j - 3) / 2] = true;
+
+      }
+
+      count++;
     }
   }
 
   free(sieve);
-
-  if (n == TARGET)
-    printf("%d\n", p);
-  else
-    printf("FAILED\n");
 
   return 0;
 }
