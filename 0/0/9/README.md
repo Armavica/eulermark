@@ -14,6 +14,7 @@ Find the product `abc`.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **627 us** | 100% | **1.91 MB** | 100% | 15
-haskell | 1.76 ms | 281% | 8.22 MB | 430% | 11
-python | 44.4 ms | 7081% | 24.8 MB | 1298% | 5
+C | **562 us** | 100% | **1.78 MB** | 100% | 14
+rust | 1.71 ms | 304% | 6.30 MB | 354% | 12
+haskell | 1.86 ms | 331% | 8.12 MB | 456% | 11
+python | 26.4 ms | 4698% | 24.8 MB | 1393% | 5

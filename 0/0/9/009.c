@@ -2,15 +2,14 @@
 
 #include <stdio.h>
 
-#define PERIMETER 1000
-#define HALF_PERIMETER PERIMETER / 2
+static int P = 1000;
 
 int main() {
   int a, b, c;
 
-  for (c = HALF_PERIMETER; c > 0; c--) {
-    for (b = c - 1; b > 0; b--) {
-      a = PERIMETER - b - c;
+  for (c = P / 3 + 1; c < P / 2; c++) {
+    for (b = (P - c) / 2 + 1; b < c; b++) {
+      a = P - b - c;
 
       if (a*a + b*b == c*c) {
         printf("%d\n", a * b * c);
