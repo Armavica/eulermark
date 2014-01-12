@@ -21,11 +21,8 @@ int main() {
         break;
       }
 
-      for (j = p*p; j < 2*size + 3; j += 2*p) {
-        /*printf("*%d\n", j);*/
+      for (j = p*p; j < 2*size + 3; j += 2*p)
         sieve[(j - 3) / 2] = true;
-
-      }
 
       count++;
     }
