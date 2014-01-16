@@ -21,9 +21,8 @@ int main() {
     for (j = i; j < 1000; j++) {
       p = i * j;
 
-      if (p > max)
-        if (isPalindrome(p))
-          max = p;
+      if (p > max && isPalindrome(p))
+        max = p;
     }
 
   printf("%u\n", max);
