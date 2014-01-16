@@ -11,7 +11,7 @@ int main() {
   bool *sieve = (bool *)calloc(size, sizeof(char));
 
   for (i = 0; i < size; i++) {
-    if (sieve[i] == false) {
+    if (!sieve[i]) {
       p = 2*i + 3;
 
       acc += p;
