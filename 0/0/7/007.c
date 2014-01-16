@@ -13,7 +13,7 @@ int main() {
   bool *sieve = (bool *)calloc(size, sizeof(bool));
 
   for (i = 0; i < size; i++) {
-    if (sieve[i] == false) {
+    if (!sieve[i]) {
       p = 2*i + 3;
 
       if (count == target) {

@@ -8,6 +8,6 @@ What is the 10 001st prime number?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **1.11 ms** | 100% | **2.34 MB** | 100% | 24
-rust | 2.19 ms | 197% | 6.34 MB | 271% | 20
-haskell | 6.23 ms | 561% | 8.89 MB | 380% | 3
+C | **1.06 ms** | 100% | **2.34 MB** | 100% | 24
+rust | 2.08 ms | 196% | 13.0 MB | 556% | 20
+haskell | 5.83 ms | 550% | 8.88 MB | 379% | 3
