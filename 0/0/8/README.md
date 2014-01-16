@@ -45,6 +45,6 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **658 us** | 100% | **2.02 MB** | 100% | 28
-haskell | 1.52 ms | 231% | 8.66 MB | 429% | 10
-rust | 8.07 ms | 1226% | 14.7 MB | 728% | 20
+C | **684 us** | 100% | **2.02 MB** | 100% | 28
+haskell | 1.56 ms | 228% | 8.66 MB | 429% | 10
+rust | 1.69 ms | 247% | 15.1 MB | 748% | 21

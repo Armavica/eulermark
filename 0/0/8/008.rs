@@ -1,21 +1,21 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::io::fs::File;
+use std::char::to_digit;
 
-static stride: int = 5;
+static stride: uint = 5;
 
 fn main() {
   let (mut max, mut pos) = (0, 0);
-  let mut factors: [int, ..stride] = [0, ..stride];
+  let mut factors: [uint, ..stride] = [0, ..stride];
 
   let path = &Path::new("008.in");
   let mut file = File::open(path);
+  let contents = file.read_to_str();
 
-  for byte in file.bytes() {
-    if byte != '\n' as u8 {
-      let num = byte as int - 48;
-
-      factors[pos] = num;
+  for line in contents.lines() {
+    for n in line.chars().map(|c| to_digit(c, 10).unwrap()) {
+      factors[pos] = n;
 
       let prod = factors.iter().fold(1, |a, &b| a * b);
 
