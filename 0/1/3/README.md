@@ -206,5 +206,6 @@ numbers.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **2.59 ms** | 100% | **9.56 MB** | 100% | 5
-python | 22.8 ms | 880% | 24.9 MB | 260% | 2
+rust | **2.21 ms** | 100% | 15.3 MB | 161% | 16
+haskell | 2.56 ms | 116% | **9.50 MB** | 100% | 5
+python | 23.2 ms | 1050% | 24.9 MB | 262% | 2
