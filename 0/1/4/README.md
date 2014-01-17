@@ -21,6 +21,7 @@ Which starting number, under one million, produces the longest chain?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **15.3 ms** | 100% | **16.8 MB** | 100% | 30
-haskell | 360 ms | 2353% | 234 MB | 1393% | 17
-python | 1.7 s | 11111% | 750 MB | 4464% | 6
+C | **14.3 ms** | 100% | **16.5 MB** | 100% | 30
+rust | 28.4 ms | 199% | 36.2 MB | 219% | 30
+haskell | 357 ms | 2497% | 233 MB | 1412% | 17
+python | 1.76 s | 12308% | 750 MB | 4545% | 6
