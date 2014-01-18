@@ -14,4 +14,5 @@ British usage.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **1.87 ms** | 100% | **8.02 MB** | 100% | 39
+rust | **1.73 ms** | 100% | **6.33 MB** | 100% | 54
+haskell | 1.95 ms | 113% | 7.98 MB | 126% | 39
