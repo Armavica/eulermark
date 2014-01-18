@@ -10,5 +10,6 @@ How many such routes are there through a 20*20 grid?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **618 us** | 100% | **1.94 MB** | 100% | 14
-haskell | 1.19 ms | 193% | 6.25 MB | 322% | 3
+C | **606 us** | 100% | **1.80 MB** | 100% | 14
+haskell | 1.22 ms | 201% | 6.16 MB | 342% | 3
+rust | 1.59 ms | 262% | 13.1 MB | 728% | 17
