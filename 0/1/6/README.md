@@ -7,5 +7,6 @@ What is the sum of the digits of the number 2^1000?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **1.22 ms** | 100% | **6.47 MB** | 100% | 5
-python | 22.9 ms | 1877% | 24.9 MB | 385% | 1
+haskell | **1.24 ms** | 100% | **6.45 MB** | 100% | 5
+rust | 2.91 ms | 235% | 6.48 MB | 100% | 17
+python | 23.8 ms | 1919% | 24.9 MB | 386% | 1
