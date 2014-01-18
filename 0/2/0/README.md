@@ -11,4 +11,5 @@ Find the sum of the digits in the number 100!
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **1.26 ms** | 100% | **6.70 MB** | 100% | 5
+haskell | **1.3 ms** | 100% | 6.53 MB | 100% | 5
+rust | 2.1 ms | 162% | **6.50 MB** | 100% | 11
