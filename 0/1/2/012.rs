@@ -91,7 +91,7 @@ fn main() {
     }
 
     // new prime
-    if tmp != 1 {
+    if tmp != 1 && *primes.last() < tmp {
       primes.push(tmp);
     }
 
