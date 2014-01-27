@@ -1,31 +1,30 @@
 // Copyright (C) 2014 Jorge Aparicio
 
+use std::util::{replace,swap};
+
 fn main() {
-  println!("{}", range(2, 21).fold(1, |a, b| lcm(a, b)));
+    println!("{}", range(2, 21u).fold(1, |a, b| lcm(a, b)));
 }
 
-fn lcm(a: int, b: int) -> int {
-  a * b / gcd(a, b)
+fn lcm(a: uint, b: uint) -> uint {
+    a * b / gcd(a, b)
 }
 
-fn gcd(mut a: int, mut b: int) -> int {
-  if a < b {
-    let t = a;
-    a = b;
-    b = t;
-  }
-
-  loop {
-    let r = a % b;
-
-    if r == 0 {
-      break;
+fn gcd(mut a: uint, mut b: uint) -> uint {
+    if a < b {
+        swap(&mut a, &mut b);
     }
 
-    a = b;
-    b = r;
-  }
+    loop {
+        let r = a % b;
 
-  b
+        if r == 0 {
+            break;
+        }
+
+        a = replace(&mut b, r);
+    }
+
+    b
 }
 
