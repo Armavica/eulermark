@@ -1,15 +1,12 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::AdditiveIterator;
+use std::num::pow;
 
 fn main() {
-  let sumSquared = square(range(1, 101).sum());
-  let sumOfSquares = range(1, 101).map(square).sum();
+    let sumSquared = pow(range(1, 101).sum(), 2);
+    let sumOfSquares = range(1, 101).map(|x| pow(x, 2)).sum();
 
-  println!("{}", sumSquared - sumOfSquares);
-}
-
-fn square(a: int) -> uint {
-  (a * a) as uint
+    println!("{}", sumSquared - sumOfSquares);
 }
 
