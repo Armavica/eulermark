@@ -19,6 +19,6 @@ divisors?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-rust | **8.78 ms** | 100% | **6.38 MB** | 100% | 89
-haskell | 18 ms | 205% | 9.34 MB | 146% | 19
-python | 627 ms | 7141% | 25.0 MB | 392% | 28
+rust | **8.77 ms** | 100% | **6.30 MB** | 100% | 78
+haskell | 18.1 ms | 206% | 9.34 MB | 148% | 19
+python | 628 ms | 7161% | 25.0 MB | 397% | 28
