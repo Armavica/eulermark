@@ -8,7 +8,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-C | **1.49 ms** | 100% | **1.78 MB** | 100% | 21
-haskell | 2.48 ms | 166% | 8.12 MB | 456% | 21
-rust | 2.52 ms | 169% | 6.23 MB | 350% | 20
-python | 215 ms | 14430% | 24.9 MB | 1399% | 7
+C | **1.48 ms** | 100% | **1.78 MB** | 100% | 21
+rust | 2.31 ms | 156% | 6.22 MB | 349% | 20
+haskell | 2.4 ms | 162% | 8.12 MB | 456% | 21
+python | 219 ms | 14797% | 24.9 MB | 1399% | 7
