@@ -14,7 +14,7 @@ fn main() {
         factorial(100).
         to_str().
         chars().
-        map(|c| c.to_digit(10).unwrap()).
+        filter_map(|c| c.to_digit(10)).
         sum());
 }
 
