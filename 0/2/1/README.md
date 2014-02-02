@@ -15,4 +15,5 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **30.2 ms** | 100% | **13.4 MB** | 100% | 35
+rust | **8.58 ms** | 100% | **6.53 MB** | 100% | 58
+haskell | 14.3 ms | 167% | 10.4 MB | 159% | 35
