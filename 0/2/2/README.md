@@ -15,4 +15,5 @@ What is the total of all the name scores in the file?
 
 Language | Time | rTime | Mem | rMem | LoC
 --- | :---: | :---: | :---: | :---: | :---:
-haskell | **12 ms** | 100% | **17.2 MB** | 100% | 12
+rust | **3.17 ms** | 100% | 15.1 MB | 102% | 12
+haskell | 8.39 ms | 265% | **14.8 MB** | 100% | 12
