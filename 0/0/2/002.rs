@@ -1,7 +1,7 @@
 // Copyright (C) 2013 Jorge Aparicio
 
 use std::iter::AdditiveIterator;
-use std::util::replace;
+use std::mem::replace;
 
 fn main() {
     println!("{}",
