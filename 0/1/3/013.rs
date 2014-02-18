@@ -1,17 +1,18 @@
 // Copyright (C) 2014 Jorge Aparicio
 
-extern mod extra;
+extern crate num;
 
-use extra::bigint::BigInt;
+use num::bigint::BigInt;
+use std::io::BufferedReader;
 use std::io::fs::File;
 use std::iter::AdditiveIterator;
 
 fn main() {
-    let contents = File::open(&Path::new("013.in")).read_to_str();
+    let mut content = BufferedReader::new(File::open(&Path::new("013.in")));
 
-    let sum = contents.
+    let sum = content.
         lines().
-        filter_map(|line| from_str::<BigInt>(line)).
+        filter_map(|line| from_str::<BigInt>(line.trim_right())).
         sum().
         to_str();
 
