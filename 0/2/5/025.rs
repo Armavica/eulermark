@@ -1,15 +1,15 @@
 // Copyright (C) 2014 Jorge Aparicio
 
-extern mod extra;
+extern crate num;
 
-use extra::bigint::BigUint;
-use extra::bigint::ToBigUint;
+use num::bigint::BigUint;
+use num::bigint::ToBigUint;
+use std::mem::replace;
 use std::num::One;
 use std::num::Zero;
-use std::util::replace;
 
 fn main() {
-    println!("{}", fibonacci().enumerate().skip_while(|&(_, ref n)| number_of_digits(n.clone()) < 1000).next().unwrap().n0() + 1);
+    println!("{}", fibonacci().enumerate().skip_while(|&(_, ref n)| number_of_digits(n.clone()) < 1000).next().unwrap().val0() + 1);
 }
 
 fn number_of_digits(mut n: BigUint) -> uint {
