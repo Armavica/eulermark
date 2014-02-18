@@ -1,13 +1,14 @@
 // Copyright (C) 2014 Jorge Aparicio
 
+use std::cmp::max;
+use std::io::BufferedReader;
 use std::io::fs::File;
-use std::num::max;
 
 fn main() {
-    let contents = File::open(&Path::new("018.in")).read_to_str();
+    let mut content = BufferedReader::new(File::open(&Path::new("018.in")));
 
     let costs =
-        contents.
+        content.
         lines().
         map(|l| l.words().filter_map(|w| from_str::<uint>(w)).to_owned_vec()).
         fold(~[0], |a, b| {
