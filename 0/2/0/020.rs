@@ -1,9 +1,9 @@
 // Copyright (C) 2014 Jorge Aparicio
 
-extern mod extra;
+extern crate num;
 
-use extra::bigint::BigUint;
-use extra::bigint::ToBigUint;
+use num::bigint::BigUint;
+use num::bigint::ToBigUint;
 use std::iter::AdditiveIterator;
 use std::iter::MultiplicativeIterator;
 use std::iter::range_inclusive;
