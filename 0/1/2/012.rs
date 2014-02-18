@@ -1,7 +1,7 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::count;
-use std::util::replace;
+use std::mem::replace;
 
 fn main() {
     let mut primes = ~[2];
