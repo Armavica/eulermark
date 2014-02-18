@@ -11,5 +11,5 @@ fn main() {
                 let next_c = c + step;
                 (a + next_c, next_c)
             })
-        }).n0());
+        }).val0());
 }
