@@ -1,14 +1,15 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::io::fs::File;
+use std::io::BufferedReader;
 
 static stride: uint = 4;
 
 fn main() {
-    let contents = File::open(&Path::new("011.in")).read_to_str();
+    let mut content = BufferedReader::new(File::open(&Path::new("011.in")));
 
     let grid =
-        contents.
+        content.
         lines().
         map(|line| line.words().filter_map(from_str::<uint>).to_owned_vec()).
         to_owned_vec();
