@@ -1,0 +1,10 @@
+{
+  "comment": "#",
+  "compiler": null,
+  "extension": "sh",
+  "interpreter": {
+    "command": "bash",
+    "flags": []
+  },
+  "name": "Bash"
+}

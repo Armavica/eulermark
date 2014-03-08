@@ -1,0 +1,10 @@
+{
+  "comment": "//",
+  "compiler": null,
+  "extension": "js",
+  "interpreter": {
+    "command": "node",
+    "flags": []
+  },
+  "name": "JavaScript"
+}

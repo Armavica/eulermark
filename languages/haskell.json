@@ -1,0 +1,12 @@
+{
+  "comment": "--",
+  "compiler": {
+    "byproduct": ["Main.hi", "Main.o"],
+    "command": "ghc",
+    "flags": ["-O2", "-outputdir", ".", "-o", "Main"],
+    "output": "Main"
+  },
+  "extension": "hs",
+  "interpreter": null,
+  "name": "Haskell"
+}

@@ -1,0 +1,15 @@
+{
+  "comment": "#",
+  "compiler": {
+    "byproduct": [],
+    "command": "coffee",
+    "flags": ["-c", "-o", "."],
+    "output": "*.js"
+  },
+  "extension": "coffee",
+  "interpreter": {
+    "command": "node",
+    "flags": []
+  },
+  "name": "CoffeeScript"
+}

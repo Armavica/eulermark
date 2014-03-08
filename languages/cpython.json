@@ -1,0 +1,10 @@
+{
+  "comment": "#",
+  "compiler": null,
+  "extension": "py",
+  "interpreter": {
+    "command": "python",
+    "flags": ["-O"]
+  },
+  "name": "CPython"
+}

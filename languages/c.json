@@ -1,0 +1,12 @@
+{
+  "comment": "//",
+  "compiler": {
+    "byproduct": [],
+    "command": "gcc",
+    "flags": ["-O2", "-std=c11"],
+    "output": "a.out"
+  },
+  "extension": "c",
+  "interpreter": null,
+  "name": "C"
+}
