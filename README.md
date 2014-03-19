@@ -32,3 +32,4 @@ PID | aTime | rTime | Loc
 [029](problems/0/2/9) | Rust | Rust | Rust
 [030](problems/0/3/0) | Rust | Rust | Rust
 [031](problems/0/3/1) | Rust | Rust | Rust
+[032](problems/0/3/2) | Rust | Rust | Rust
