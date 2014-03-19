@@ -45,4 +45,4 @@ Haskell |  354 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Haskell |  353 ms | 100%
+Haskell |  352 ms | 100%

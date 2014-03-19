@@ -46,17 +46,17 @@ Find the greatest product of five consecutive digits in the 1000-digit number.
 Language | LoC
 --- | :---:
 Haskell | 10
-Rust | 23
+Rust | 24
 C | 28
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  634 us | 100%
-Haskell | 1.42 ms | 223%
-Rust | 1.69 ms | 266%
+C |  640 us | 100%
+Haskell | 1.42 ms | 222%
+Rust |  1.6 ms | 250%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C | 95.1 us | 100%
-Rust |  235 us | 246%
-Haskell |  241 us | 253%
+C |  103 us | 100%
+Rust |  225 us | 217%
+Haskell |  252 us | 243%

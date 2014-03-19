@@ -16,6 +16,8 @@ fn main() {
     };
 
     for char in content.chars() {
+        let char = char.unwrap();
+
         if char != '\n' {
             factors[pos] = to_digit(char, 10).unwrap();
 

@@ -1,34 +1,35 @@
 // Copyright (C) 2014 Jorge Aparicio
 
-use std::iter::range_inclusive;
 use std::num::pow;
-use std::vec::from_elem;
+use std::vec_ng::Vec;
 
 fn main() {
     let limit = 28123;
-    let mut primes = ~[2];
-    let mut sopd = from_elem(limit + 1, 0u);
+    let mut primes = vec!(2);
+    let mut sopd = Vec::from_elem(limit + 1, 0u);
 
-    for i in range_inclusive(2u, limit) {
-        sopd[i] = factorize(i, &mut primes).divisors().iter().fold(0, |a, &b| a + b) - i;
+    for i in range(2, limit + 1) {
+        *sopd.get_mut(i) = factorize(i, &mut primes).divisors().iter().fold(0, |a, &b| a + b) - i;
     }
 
-    let abundant_numbers = range_inclusive(2u, limit).filter(|&x| is_abundant(x, sopd)).to_owned_vec();
+    let abundant_numbers: Vec<uint> = range(2, limit + 1).filter(|&x| {
+        is_abundant(x, sopd.as_slice())
+    }).collect();
 
-    let mut abundant_sums = from_elem(limit + 1, false);
+    let mut abundant_sums = Vec::from_elem(limit + 1, false);
 
     for i in range(0, abundant_numbers.len()) {
-        for j in range_inclusive(0, i) {
-            let s = abundant_numbers[i] + abundant_numbers[j];
+        for j in range(0, i + 1) {
+            let s = abundant_numbers.get(i) + *abundant_numbers.get(j);
 
             if s < limit {
-                abundant_sums[s] = true;
+                *abundant_sums.get_mut(s) = true;
             }
         }
     }
 
     println!("{}", range(0, limit).fold(0, |a, n| {
-        if abundant_sums[n] { a } else { a + n }
+        if *abundant_sums.get(n) { a } else { a + n }
     }))
 }
 
@@ -36,11 +37,11 @@ fn is_abundant(n: uint, sopd: &[uint]) -> bool {
     sopd[n] > n
 }
 
-// Factors(~[(a, x), (b, y)]) <-> a^x * b^y
-struct Factors(~[(uint, uint)]);
+// Factors(vec!((a, x), (b, y))) <-> a^x * b^y
+struct Factors(Vec<(uint, uint)>);
 
-fn factorize(mut n: uint, primes: &mut ~[uint]) -> Factors {
-    let mut factors = ~[];
+fn factorize(mut n: uint, primes: &mut Vec<uint>) -> Factors {
+    let mut factors = vec!();
 
     for &prime in primes.iter() {
         if n == 1 {
@@ -71,15 +72,19 @@ fn factorize(mut n: uint, primes: &mut ~[uint]) -> Factors {
 }
 
 impl Factors {
-    fn divisors(&self) -> ~[uint] {
+    fn divisors(&self) -> Vec<uint> {
         let &Factors(ref s) = self;
 
-        s.iter().fold(~[1], |x, &(b, n)| combine(x, range_inclusive(0, n).map(|x| pow(b, x)).to_owned_vec()))
+        s.iter().fold(vec!(1), |xs, &(b, n)| {
+            let ys: Vec<uint> = range(0, n + 1).map(|x| pow(b, x)).collect();
+
+            combine(xs.as_slice(), ys.as_slice())
+        })
     }
 }
 
-fn combine(xs: &[uint], ys: &[uint]) -> ~[uint] {
-    let mut z = ~[];
+fn combine(xs: &[uint], ys: &[uint]) -> Vec<uint> {
+    let mut z = vec!();
 
     for &x in xs.iter() {
         for &y in ys.iter() {

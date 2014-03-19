@@ -1,8 +1,7 @@
-extern crate extra;
 extern crate serialize;
+extern crate test;
 extern crate time;
 
-use extra::stats::Stats;
 use serialize::{Decodable,Encodable,json};
 use std::f64::{ceil,log10,sqrt};
 use std::io::fs;
@@ -13,7 +12,8 @@ use std::iter::range_inclusive;
 use std::num::pow;
 use std::os;
 use std::str;
-use std::vec;
+use std::vec_ng::Vec;
+use test::stats::Stats;
 use time::precise_time_ns;
 
 static max_bench_time: u64 = 3_000_000_000;
@@ -55,9 +55,9 @@ impl Drop for Symlink {
 
 #[deriving(Decodable)]
 struct Compiler {
-    byproduct: ~[~str],
+    byproduct: Vec<~str>,
     command: ~str,
-    flags: ~[~str],
+    flags: Vec<~str>,
     output: ~str,
 }
 
@@ -67,7 +67,7 @@ impl Compiler {
         let prog = self.command.as_slice();
         args.push(source.as_str().unwrap().to_owned());
 
-        match Process::output(prog, args) {
+        match Process::output(prog, args.as_slice()) {
             Err(_) => {
                 println!("compiler not found!\n");
                 None
@@ -75,7 +75,7 @@ impl Compiler {
                 if output.status.success() {
                     Some(CompilerOutput {
                         executable: specialize(self.output, source),
-                        byproduct: self.byproduct.iter().map(|t| specialize(t.as_slice(), source)).to_owned_vec()
+                        byproduct: self.byproduct.iter().map(|t| specialize(t.as_slice(), source)).collect()
                     })
                 } else {
                     println!("compilation failed! {} stderr:\n{}",
@@ -90,7 +90,7 @@ impl Compiler {
 
 struct CompilerOutput {
     executable: Path,
-    byproduct: ~[Path],
+    byproduct: Vec<Path>,
 }
 
 impl Drop for CompilerOutput {
@@ -138,7 +138,7 @@ impl CompilerOutput {
 #[deriving(Decodable)]
 struct Interpreter {
     command: ~str,
-    flags: ~[~str],
+    flags: Vec<~str>,
 }
 
 impl Interpreter {
@@ -148,7 +148,7 @@ impl Interpreter {
         args.push(bytecode.as_str().unwrap().to_owned());
 
         let now = precise_time_ns();
-        let out = Process::output(prog, args);
+        let out = Process::output(prog, args.as_slice());
         let elapsed = precise_time_ns() - now;
 
         match out {
@@ -213,7 +213,7 @@ impl Problem {
                 Err(e) => {
                     println!("failed to read  file: {}", e);
                     return None;
-                } Ok(s) => s.lines().take(2).to_owned_vec().connect("\n"),
+                } Ok(s) => s.lines().take(2).collect::<Vec<&str>>().connect("\n"),
             }
         };
 
@@ -312,13 +312,13 @@ impl<'a,'b> Benchmark<'a,'b> {
 
         print!("* BENCHMARKING... ");
         stdio::flush();
-        let mut samples = vec::with_capacity(runs as uint);
+        let mut samples = Vec::with_capacity(runs as uint);
         for _ in range(0, runs) {
             samples.push(self.execute(&compiler_output).unwrap().val1() as f64)
         }
 
-        let mu = samples.mean() as u64;
-        let sigma = samples.std_dev() as u64;
+        let mu = samples.as_slice().mean() as u64;
+        let sigma = samples.as_slice().std_dev() as u64;
 
         print!("abs: {} ns/iter (+/- {})", mu, sigma);
 
@@ -390,7 +390,7 @@ fn problems_directory() -> Path {
     Path::new(os::args()[0]).dir_path().dir_path().join("problems")
 }
 
-fn supported_languages() -> ~[Language] {
+fn supported_languages() -> Vec<Language> {
     match fs::readdir(&languages_directory()) {
         Err(e) => fail!("languages directory not found: {}", e),
         Ok(paths) => paths.move_iter().filter(|path| match path.extension_str() {
@@ -418,11 +418,11 @@ fn supported_languages() -> ~[Language] {
             } else {
                 true
             }
-        }).to_owned_vec(),
+        }).collect(),
     }
 }
 
-fn read_results(json_path: &Path) -> Option<~[BenchmarkResult]> {
+fn read_results(json_path: &Path) -> Option<Vec<BenchmarkResult>> {
     match File::open(json_path) {
         Err(_) => {
             println!("failed to open {}", json_path.as_str().unwrap());
@@ -472,7 +472,7 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
 
             buf.push_str(results.iter().map(|r| {
                 format!("{} | {}", r.language, r.loc)
-            }).to_owned_vec().connect("\n"));
+            }).collect::<Vec<~str>>().connect("\n"));
 
             buf.push_str("\n\nLanguage | aTime | aTime\n--- | :---: | :---:\n");
 
@@ -485,19 +485,19 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
                     r.language,
                     format_time(r.absolute.mu),
                     r.absolute.mu * 100 / min_atime)
-            }).to_owned_vec().connect("\n"));
+            }).collect::<Vec<~str>>().connect("\n"));
 
             if results.iter().any(|r| {
                 r.relative.is_some() &&
                 r.relative.get_ref().mu > r.relative.get_ref().sigma
             }) {
-                let mut results = results.iter().filter(|r| {
+                let mut results: Vec<&BenchmarkResult> = results.iter().filter(|r| {
                     r.relative.get_ref().mu > r.relative.get_ref().sigma
-                }).to_owned_vec();
+                }).collect();
 
                 results.sort_by(|x, y| x.relative.get_ref().mu.cmp(&y.relative.get_ref().mu));
 
-                let min_rtime = results[0].relative.get_ref().mu;
+                let min_rtime = results.get(0).relative.get_ref().mu;
 
                 buf.push_str("\n\nLanguage | rTime | rTime\n--- | :---: | :---:\n");
 
@@ -506,7 +506,7 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
                         r.language,
                         format_time(r.relative.get_ref().mu),
                         r.relative.get_ref().mu * 100 / min_rtime)
-                }).to_owned_vec().connect("\n"))
+                }).collect::<Vec<~str>>().connect("\n"))
             }
 
             buf.push_str("\n");
@@ -538,7 +538,7 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
                 None
             };
 
-            let mut results = ~[];
+            let mut results = Vec::new();
             for language in languages.iter() {
                 match Benchmark::new(language, &problem) {
                     None => println!("{} not found\n", language.name),
@@ -570,12 +570,12 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
 
             print!("\nJSON... ");
             stdio::flush();
-            write_results(results, &problem.path.with_extension("json"));
+            write_results(results.as_slice(), &problem.path.with_extension("json"));
             println!("Done");
 
             print!("README... ");
             stdio::flush();
-            update_readme(results, &problem.path);
+            update_readme(results.as_mut_slice(), &problem.path);
             println!("Done\n");
         }
     };
@@ -629,7 +629,7 @@ fn update_table() {
                 None
             }
         })
-    }.to_owned_vec().connect("\n"));
+    }.collect::<Vec<~str>>().connect("\n"));
 
     buf.push_str("\n");
 
@@ -653,8 +653,8 @@ fn main() {
         help();
     }
 
-    match args[1] {
-        ~"bench" => {
+    match args[1].as_slice() {
+        "bench" => {
             let (low, high): (uint, uint) = match args.len() {
                 3 => {
                     let low: uint = match from_str(args[2]) {
@@ -686,16 +686,16 @@ fn main() {
                         if low != 0 || high != 0 {
                             fail!("problem 0 must be benchmarked first");
                         }
-                        benchmark(languages, 0, &None);
+                        benchmark(languages.as_slice(), 0, &None);
                     } Some(results) => {
                         for i in range_inclusive(low, high) {
                             let base_results = if i == 0 { None } else { Some(results.as_slice()) };
-                            benchmark(languages, i, &base_results);
+                            benchmark(languages.as_slice(), i, &base_results);
                         }
                     }
                 }
             };
-        } ~"table" => update_table(),
+        } "table" => update_table(),
         _ => help(),
     }
 }

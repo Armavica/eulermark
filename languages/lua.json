@@ -1,0 +1,10 @@
+{
+  "comment": "#",
+  "compiler": null,
+  "extension": "lua",
+  "interpreter": {
+    "command": "lua",
+    "flags": []
+  },
+  "name": "Lua"
+}

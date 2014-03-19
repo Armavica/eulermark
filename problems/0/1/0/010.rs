@@ -2,18 +2,18 @@
 
 use std::iter::AdditiveIterator;
 use std::iter::range_step;
-use std::vec;
+use std::vec_ng::Vec;
 
 fn main() {
     println!("{}", primes(2000000).sum());
 }
 
-struct Primes { sieve: ~[bool], n: uint, i: uint }
+struct Primes { sieve: Vec<bool>, n: uint, i: uint }
 
 fn primes(upper: uint) -> Primes {
     let n = (upper - 3) / 2;
 
-    Primes { sieve: vec::from_elem(n, true), n: n, i: 0 }
+    Primes { sieve: Vec::from_elem(n, true), n: n, i: 0 }
 }
 
 impl Iterator<uint> for Primes {
@@ -23,7 +23,7 @@ impl Iterator<uint> for Primes {
             return Some(2);
         }
 
-        while self.i <= self.n && !self.sieve[self.i - 1] {
+        while self.i <= self.n && !self.sieve.get(self.i - 1) {
             self.i += 1;
         }
 
@@ -35,7 +35,7 @@ impl Iterator<uint> for Primes {
         self.i += 1;
 
         for j in range_step(p * p, 2 * self.n + 3, 2 * p) {
-            self.sieve[(j - 3) / 2] = false;
+            *self.sieve.get_mut((j - 3) / 2) = false;
         }
 
         Some(p)

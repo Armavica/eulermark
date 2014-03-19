@@ -13,7 +13,7 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5,
 
 Language | LoC
 --- | :---:
-Rust | 19
+Rust | 20
 
 Language | aTime | aTime
 --- | :---: | :---:

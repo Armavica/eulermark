@@ -1,5 +1,5 @@
-Reciprocal Cycles
------------------
+026 - Reciprocal Cycles
+-----------------------
 
 A unit fraction contains 1 in the numerator. The decimal representation of the
 unit fractions with denominators 2 to 10 are given:
@@ -27,10 +27,10 @@ Rust | 35
 
 Language | aTime | aTime
 --- | :---: | :---:
-Haskell | 3.46 ms | 100%
-Rust | 8.49 ms | 244%
+Haskell | 3.44 ms | 100%
+Rust | 8.38 ms | 243%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Haskell | 2.28 ms | 100%
-Rust | 7.03 ms | 307%
+Haskell | 2.27 ms | 100%
+Rust |    7 ms | 308%

@@ -2,14 +2,15 @@
 
 use std::iter::count;
 use std::mem::replace;
+use std::vec_ng::Vec;
 
 fn main() {
-    let mut primes = ~[2];
-    let mut next = Factors(~[(2, 1)]);
+    let mut primes = vec!(2);
+    let mut next = Factors(vec!((2, 1)));
 
     for n in count(3u, 1) {
         let curr = replace(&mut next, factorize(n, &mut primes));
-        let triangle = next * curr * Factors(~[(2, -1)]);
+        let triangle = next * curr * Factors(vec!((2, -1)));
 
         if triangle.number_of_divisors() > 500 {
             println!("{}", n * (n - 1) / 2);
@@ -18,11 +19,11 @@ fn main() {
     }
 }
 
-// Factors(~[(a, x), (b, y)]) <-> a^x * b^y
-struct Factors(~[(uint, int)]);
+// Factors(vec!((a, x), (b, y))) <-> a^x * b^y
+struct Factors(Vec<(uint, int)>);
 
-fn factorize(mut n: uint, primes: &mut ~[uint]) -> Factors {
-    let mut factors = ~[];
+fn factorize(mut n: uint, primes: &mut Vec<uint>) -> Factors {
+    let mut factors = vec!();
 
     for &prime in primes.iter() {
         if n == 1 {
@@ -67,16 +68,16 @@ impl Mul<Factors, Factors> for Factors {
         let (m, n) = (s.len(), r.len());
         let (mut i, mut j) = (0 ,0);
 
-        let mut o = ~[];
+        let mut o = vec!();
         while i != m || j != n {
             if i == m {
-                o.push(r[j]);
+                o.push(*r.get(j));
                 j += 1;
             } else if j == n {
-                o.push(s[i]);
+                o.push(*s.get(i));
                 i += 1;
             } else {
-                let ((a, x), (b, y)) = (s[i], r[j]);
+                let (&(a, x), &(b, y)) = (s.get(i), r.get(j));
 
                 if a > b {
                     o.push((b, y));

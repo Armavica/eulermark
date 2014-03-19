@@ -26,16 +26,16 @@ Language | LoC
 --- | :---:
 Haskell | 19
 CPython | 57
-Rust | 78
+Rust | 79
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 8.45 ms | 100%
-Haskell | 17.8 ms | 211%
-CPython | 71.9 ms | 851%
+Rust | 8.21 ms | 100%
+Haskell | 17.9 ms | 218%
+CPython | 74.1 ms | 902%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 6.99 ms | 100%
-Haskell | 16.7 ms | 238%
-CPython | 63.5 ms | 909%
+Rust | 6.83 ms | 100%
+Haskell | 16.8 ms | 245%
+CPython | 65.4 ms | 956%

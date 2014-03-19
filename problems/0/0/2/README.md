@@ -13,19 +13,28 @@ Language | LoC
 --- | :---:
 Haskell | 10
 CoffeeScript | 10
+Ruby | 12
+JavaScript | 12
 C | 13
+Lua | 13
 CPython | 15
+Go | 16
 Rust | 18
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  552 us | 100%
-Haskell | 1.17 ms | 212%
-Rust | 1.51 ms | 273%
-CPython | 8.64 ms | 1563%
-CoffeeScript | 29.9 ms | 5418%
+C |  544 us | 100%
+Go |  868 us | 159%
+Haskell | 1.12 ms | 206%
+Lua | 1.21 ms | 223%
+Rust | 1.46 ms | 268%
+CPython | 9.33 ms | 1713%
+Ruby | 17.5 ms | 3217%
+CoffeeScript | 31.1 ms | 5721%
+JavaScript | 31.4 ms | 5769%
 
 Language | rTime | rTime
 --- | :---: | :---:
-CPython |  272 us | 100%
-CoffeeScript | 5.66 ms | 2076%
+Go |  295 us | 100%
+CoffeeScript | 6.55 ms | 2221%
+JavaScript |  6.8 ms | 2305%

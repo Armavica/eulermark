@@ -24,7 +24,7 @@ C | 11
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  543 us | 100%
-Haskell | 1.16 ms | 215%
-Rust | 1.49 ms | 275%
-CPython | 8.47 ms | 1561%
+C |  562 us | 100%
+Haskell | 1.16 ms | 207%
+Rust | 1.46 ms | 259%
+CPython | 8.64 ms | 1535%

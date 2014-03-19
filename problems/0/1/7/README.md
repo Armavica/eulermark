@@ -20,4 +20,4 @@ Rust | 54
 Language | aTime | aTime
 --- | :---: | :---:
 Haskell | 1.28 ms | 100%
-Rust | 1.55 ms | 120%
+Rust | 1.51 ms | 118%

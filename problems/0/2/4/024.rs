@@ -1,13 +1,14 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::char::from_digit;
-use std::iter::{MultiplicativeIterator,range_inclusive};
+use std::iter::MultiplicativeIterator;
+use std::vec_ng::Vec;
 
 fn main() {
-    println!("{}", nth_perm(999999, &mut range(0u, 10).to_owned_vec()));
+    println!("{}", nth_perm(999999, &mut range(0u, 10).collect()));
 }
 
-fn nth_perm(mut m: uint, digits: &mut ~[uint]) -> ~str {
+fn nth_perm(mut m: uint, digits: &mut Vec<uint>) -> ~str {
     let mut out = ~"";
 
     while digits.len() > 0 {
@@ -23,6 +24,6 @@ fn nth_perm(mut m: uint, digits: &mut ~[uint]) -> ~str {
 }
 
 fn factorial(n: uint) -> uint {
-    range_inclusive(1, n).product()
+    range(1, n + 1).product()
 }
 

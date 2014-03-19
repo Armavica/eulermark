@@ -1,38 +1,41 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::io::fs::File;
-use std::io::BufferedReader;
+use std::vec_ng::Vec;
 
-static stride: uint = 4;
+static STRIDE: int = 4;
 
 fn main() {
-    let mut content = BufferedReader::new(File::open(&Path::new("011.in")));
+    let content = File::open(&Path::new("011.in")).read_to_str().unwrap();
 
-    let grid =
+    let grid: Vec<Vec<uint>> =
         content.
         lines().
-        map(|line| line.words().filter_map(from_str::<uint>).to_owned_vec()).
-        to_owned_vec();
+        map(|line| line.words().filter_map(from_str).collect()).
+        collect();
 
-    let (nr, nc) = (grid.len(), grid[0].len());
-    let directions = ~[(0, 1), (1, 0), (1, 1), (-1, 1)];
+    let (nr, nc) = (grid.len() as int, grid.get(0).len() as int);
+    let directions = [(0, 1), (1, 0), (1, 1), (-1, 1)];
 
-    let mut max= 0;
-    for &(y, x) in directions.iter() {
+    let mut max = 0;
+    for &(y_step, x_step) in directions.iter() {
         for r in range(0, nr) {
-            if r + stride * y > nr { continue }
+            let y_max = r + STRIDE * y_step;
+            if y_max > nr || y_max < -1 { continue }
 
             for c in range(0, nc) {
-                if c + stride * x > nc { continue }
+                let x_max = c + STRIDE * x_step;
+                if x_max > nc || x_max < -1 { continue }
 
-                let mut tmp = grid[r][c];
-                for i in range(1, stride) {
-                    tmp *= grid[r + i * y][c + i * x];
+                let mut tmp = *grid.get(r as uint).get(c as uint);
+                for i in range(1, STRIDE) {
+                    let x = (c + i * x_step) as uint;
+                    let y = (r + i * y_step) as uint;
+
+                    tmp *= *grid.get(y).get(x);
                 }
 
-                if tmp > max {
-                    max = tmp;
-                }
+                if tmp > max { max = tmp }
             }
         }
     }

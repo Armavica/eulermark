@@ -16,14 +16,14 @@ Evaluate the sum of all the amicable numbers under 10000.
 Language | LoC
 --- | :---:
 Haskell | 35
-Rust | 58
+Rust | 60
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 8.14 ms | 100%
-Haskell |   14 ms | 172%
+Rust | 7.99 ms | 100%
+Haskell |   14 ms | 175%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 6.68 ms | 100%
-Haskell | 12.8 ms | 192%
+Rust | 6.61 ms | 100%
+Haskell | 12.8 ms | 194%

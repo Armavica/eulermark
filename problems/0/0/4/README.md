@@ -15,14 +15,14 @@ Haskell | 21
 
 Language | aTime | aTime
 --- | :---: | :---:
-C | 1.33 ms | 100%
-Haskell | 2.36 ms | 177%
-Rust | 2.43 ms | 182%
-CPython |  178 ms | 13425%
+C | 1.36 ms | 100%
+Rust | 2.29 ms | 167%
+Haskell | 2.35 ms | 172%
+CPython |  182 ms | 13340%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C |  792 us | 100%
-Rust |  977 us | 123%
-Haskell | 1.18 ms | 149%
-CPython |  170 ms | 21515%
+C |  828 us | 100%
+Rust |  910 us | 109%
+Haskell | 1.18 ms | 143%
+CPython |  173 ms | 20928%

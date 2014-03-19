@@ -1,26 +1,26 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::range_step_inclusive;
-use std::vec::from_elem;
+use std::vec_ng::Vec;
 
 fn main() {
     let limit = 1000;
-    let mut primes = ~[];
-    let mut sieve = from_elem(limit + 1, true);
+    let mut primes = vec!();
+    let mut sieve = Vec::from_elem(limit + 1, true);
 
     for i in range(2u, 1000) {
-        if sieve[i] {
+        if *sieve.get(i) {
             primes.push(i);
 
             for j in range_step_inclusive(i * i, limit, i) {
-                sieve[j] = false;
+                *sieve.get_mut(j) = false;
             }
         }
     }
 
     primes.sort_by(|&a, &b| cycle_size(a).cmp(&cycle_size(b)));
 
-    println!("{}", primes[primes.len() - 1]);
+    println!("{}", primes.last().unwrap());
 }
 
 fn cycle_size(den: uint) -> uint {

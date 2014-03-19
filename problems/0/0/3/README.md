@@ -14,11 +14,7 @@ Rust | 30
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  572 us | 100%
-Haskell | 1.27 ms | 223%
-Rust | 1.52 ms | 266%
-CPython | 8.66 ms | 1514%
-
-Language | rTime | rTime
---- | :---: | :---:
-CPython |  292 us | 100%
+C |  579 us | 100%
+Haskell | 1.24 ms | 215%
+Rust | 1.49 ms | 258%
+CPython | 8.79 ms | 1517%

@@ -25,4 +25,4 @@ Rust | 11
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 1.48 ms | 100%
+Rust | 1.46 ms | 100%

@@ -21,12 +21,12 @@ two abundant numbers.
 
 Language | LoC
 --- | :---:
-Rust | 67
+Rust | 71
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 51.2 ms | 100%
+Rust | 37.9 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 49.7 ms | 100%
+Rust | 36.5 ms | 100%

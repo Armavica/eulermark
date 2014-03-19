@@ -52,17 +52,17 @@ What is the greatest product of four adjacent numbers in the same direction
 Language | LoC
 --- | :---:
 CPython | 19
-Rust | 30
+Rust | 32
 Haskell | 33
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust |  1.7 ms | 100%
-Haskell | 2.32 ms | 136%
-CPython | 10.9 ms | 641%
+Rust | 1.65 ms | 100%
+Haskell | 2.39 ms | 144%
+CPython | 10.9 ms | 663%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  243 us | 100%
-Haskell | 1.14 ms | 469%
-CPython | 2.53 ms | 1041%
+Rust |  271 us | 100%
+Haskell | 1.22 ms | 449%
+CPython | 2.23 ms | 823%

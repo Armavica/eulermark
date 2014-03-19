@@ -21,12 +21,13 @@ C | 14
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  562 us | 100%
-Rust | 1.51 ms | 269%
-Haskell | 1.67 ms | 298%
-CPython | 9.56 ms | 1701%
+C |  574 us | 100%
+Rust |  1.5 ms | 262%
+Haskell | 1.69 ms | 296%
+CPython | 9.92 ms | 1728%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Haskell |  498 us | 100%
-CPython | 1.19 ms | 240%
+Rust |  127 us | 100%
+Haskell |  527 us | 414%
+CPython | 1.19 ms | 937%

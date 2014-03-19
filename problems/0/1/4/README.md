@@ -28,14 +28,14 @@ C | 30
 
 Language | aTime | aTime
 --- | :---: | :---:
-C | 13.9 ms | 100%
-Rust | 25.1 ms | 180%
-Haskell |  342 ms | 2447%
-CPython | 1.31 s | 9436%
+C |   14 ms | 100%
+Rust | 25.5 ms | 181%
+Haskell |  361 ms | 2567%
+CPython | 1.32 s | 9409%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C | 13.4 ms | 100%
-Rust | 23.7 ms | 176%
-Haskell |  341 ms | 2537%
-CPython | 1.31 s | 9753%
+C | 13.5 ms | 100%
+Rust | 24.2 ms | 178%
+Haskell |  360 ms | 2660%
+CPython | 1.31 s | 9717%
