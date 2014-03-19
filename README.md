@@ -13,7 +13,7 @@ PID | aTime | rTime | Loc
 [010](problems/0/1/0) | C | C | Haskell
 [011](problems/0/1/1) | Rust | Rust | CPython
 [012](problems/0/1/2) | Rust | Rust | Haskell
-[013](problems/0/1/3) | Rust | CPython | CPython
+[013](problems/0/1/3) | Rust | None | CPython
 [014](problems/0/1/4) | C | C | CPython
 [015](problems/0/1/5) | C | None | Haskell
 [016](problems/0/1/6) | Haskell | None | CPython
@@ -29,3 +29,6 @@ PID | aTime | rTime | Loc
 [026](problems/0/2/6) | Haskell | Haskell | Haskell
 [027](problems/0/2/7) | Rust | Rust | Haskell
 [028](problems/0/2/8) | Rust | None | Rust
+[029](problems/0/2/9) | Rust | Rust | Rust
+[030](problems/0/3/0) | Rust | Rust | Rust
+[031](problems/0/3/1) | Rust | Rust | Rust
