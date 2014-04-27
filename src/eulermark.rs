@@ -3,7 +3,6 @@ extern crate test;
 extern crate time;
 
 use serialize::{Decodable,Encodable,json};
-use std::f64::{ceil,log10,sqrt};
 use std::io::fs;
 use std::io::process::Process;
 use std::io::stdio;
@@ -12,7 +11,6 @@ use std::iter::range_inclusive;
 use std::num::pow;
 use std::os;
 use std::str;
-use std::vec_ng::Vec;
 use test::stats::Stats;
 use time::precise_time_ns;
 
@@ -22,7 +20,7 @@ fn format_time(ns: u64) -> ~str {
     if ns < 1_000 {
         format!("{:4} ns", ns)
     } else {
-        let digits = ceil(log10(ns as f64)) as uint;
+        let digits = (ns as f64).log10().ceil() as uint;
         let one_zeros = pow(10u64, digits - 3);
         let ns = (ns / one_zeros) * one_zeros;
 
@@ -80,7 +78,7 @@ impl Compiler {
                 } else {
                     println!("compilation failed! {} stderr:\n{}",
                         prog,
-                        str::from_utf8_owned(output.error).unwrap());
+                        str::from_utf8(output.error.as_slice()).unwrap());
                     None
                 }
             }
@@ -121,13 +119,13 @@ impl CompilerOutput {
         match out {
             Err(e)     => fail!("failed to run executable: {}", e),
             Ok(output) => if output.status.success() {
-                let stdout = str::from_utf8_owned(output.output).unwrap();
+                let stdout = str::from_utf8(output.output.as_slice()).unwrap().to_owned();
 
                 Some((stdout, elapsed))
             } else {
                 println!("runtime error! {} stderr:\n{}",
                     filename,
-                    str::from_utf8_owned(output.error).unwrap())
+                    str::from_utf8(output.error.as_slice()).unwrap())
 
                     None
             }
@@ -156,13 +154,13 @@ impl Interpreter {
                 println!("interpreter not found!");
                 None
             } Ok(output) => if output.status.success() {
-                let stdout = str::from_utf8_owned(output.output).unwrap();
+                let stdout = str::from_utf8(output.output.as_slice()).unwrap().to_owned();
 
                 Some((stdout, elapsed))
             } else {
                 print!("execution failed! {} stderr:\n{}",
                     prog,
-                    str::from_utf8_owned(output.error).unwrap());
+                    str::from_utf8(output.error.as_slice()).unwrap());
 
                 None
             }
@@ -359,7 +357,7 @@ impl Sub<Measurement, Measurement> for Measurement {
     fn sub(&self, rhs: &Measurement) -> Measurement {
         Measurement {
             mu: if self.mu > rhs.mu { self.mu - rhs.mu } else { 0 },
-            sigma: sqrt((pow(self.sigma, 2) + pow(rhs.sigma, 2)) as f64) as u64
+            sigma: ((pow(self.sigma, 2) + pow(rhs.sigma, 2)) as f64).sqrt() as u64
         }
     }
 }
@@ -406,7 +404,7 @@ fn supported_languages() -> Vec<Language> {
                         Err(e) => fail!("failed to parse {}: {}", filename, e),
                         Ok(json) => {
                             // FIXME this should be an one-liner
-                            let t: Language = Decodable::decode(&mut json::Decoder::new(json));
+                            let t: Language = Decodable::decode(&mut json::Decoder::new(json)).unwrap();
                             t
                         },
                     },
@@ -436,7 +434,7 @@ fn read_results(json_path: &Path) -> Option<Vec<BenchmarkResult>> {
                     println!("failed to parse {}", json_path.as_str().unwrap());
                     None
                 } Ok(json) => {
-                    Some(Decodable::decode(&mut json::Decoder::new(json)))
+                    Some(Decodable::decode(&mut json::Decoder::new(json)).unwrap())
                 }
             }
         }
@@ -464,7 +462,7 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
     match File::open_mode(&readme_path, Append, Write) {
         Err(_) => fail!("failed to open README.md"),
         Ok(mut file) => {
-            let mut buf = ~"";
+            let mut buf = StrBuf::new();
 
             buf.push_str("Language | LoC\n--- | :---:\n");
 
@@ -511,7 +509,7 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
 
             buf.push_str("\n");
 
-            match file.write_str(buf) {
+            match file.write_str(buf.into_owned()) {
                 Err(_) => fail!("failed to write README.md"),
                 Ok(_) => {}
             }
@@ -582,7 +580,7 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
 }
 
 fn update_table() {
-    let mut buf = ~"";
+    let mut buf = StrBuf::new();
 
     buf.push_str("PID | aTime | rTime | Loc\n");
     buf.push_str(":--:| :---: | :---: | :---:\n");
@@ -635,7 +633,7 @@ fn update_table() {
 
     match File::open_mode(&eulermark_directory().join("README.md"), Truncate, Write) {
         Err(_)   => fail!("failed to open README.md"),
-        Ok(mut file) => match file.write_str(buf) {
+        Ok(mut file) => match file.write_str(buf.into_owned()) {
             Err(_) => fail!("failed to write README.md"),
             Ok(_)  => {}
         }
