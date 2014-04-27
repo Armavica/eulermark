@@ -288,14 +288,15 @@ impl<'a,'b> Benchmark<'a,'b> {
             }
         };
 
-        let runs = max_bench_time / estimate;
-
         print!("* BENCHMARKING... ");
         stdio::flush();
-        let mut samples = Vec::with_capacity(runs as uint);
-        for _ in range(0, runs) {
-            samples.push(self.execute(&compiler_output).unwrap().val1() as f64)
-        }
+
+        let samples =
+            match max_bench_time/estimate {
+                0       => vec!(estimate as f64),
+                runs    => Vec::from_fn(runs as uint,
+                    |_| self.execute(&compiler_output).unwrap().val1() as f64)
+            };
 
         let mu = samples.as_slice().mean() as u64;
         let sigma = samples.as_slice().std_dev() as u64;
