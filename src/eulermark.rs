@@ -522,7 +522,6 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
             let mut results = Vec::new();
             for language in languages.iter() {
                 match Benchmark::new(language, &problem) {
-                    None => println!("{} not found\n", language.name),
                     Some(benchmark) => {
                         println!("Found {}", language.name);
 
@@ -534,7 +533,7 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
                             }
                         }
                     }
-
+                    None => ()
                 }
             }
 
