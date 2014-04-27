@@ -5,6 +5,7 @@ extern crate time;
 use serialize::{Decodable,Encodable,json};
 use std::io::fs;
 use std::io::process::Process;
+use std::io::process::ProcessOutput;
 use std::io::stdio;
 use std::io::{Append,File,Truncate,Write};
 use std::iter::range_inclusive;
@@ -61,19 +62,19 @@ impl Compiler {
             Err(_) => {
                 println!("compiler not found!\n");
                 None
-            } Ok(output) => {
-                if output.status.success() {
+            }
+            Ok(ProcessOutput{status, error, ..}) =>
+                if status.success() {
                     Some(CompilerOutput {
                         executable: specialize(self.output, source),
                         byproduct: self.byproduct.iter().map(|t| specialize(t.as_slice(), source)).collect()
                     })
                 } else {
                     println!("compilation failed! {} stderr:\n{}",
-                        prog,
-                        str::from_utf8(output.error.as_slice()).unwrap());
+                            prog,
+                            str::from_utf8(error.as_slice()).unwrap());
                     None
                 }
-            }
         }
     }
 }
@@ -108,17 +109,16 @@ impl CompilerOutput {
 
         match out {
             Err(e)     => fail!("failed to run executable: {}", e),
-            Ok(output) => if output.status.success() {
-                let stdout = str::from_utf8(output.output.as_slice()).unwrap().to_owned();
-
-                Some((stdout, elapsed))
-            } else {
-                println!("runtime error! {} stderr:\n{}",
-                    filename,
-                    str::from_utf8(output.error.as_slice()).unwrap())
-
+            Ok(ProcessOutput{status, output, error}) =>
+                if status.success() {
+                    let stdout = str::from_utf8(output.as_slice()).unwrap().to_owned();
+                    Some((stdout, elapsed))
+                } else {
+                    println!("runtime error! {} stderr:\n{}",
+                             filename,
+                             str::from_utf8(error.as_slice()).unwrap());
                     None
-            }
+                }
         }
     }
 }
@@ -143,17 +143,19 @@ impl Interpreter {
             Err(_) => {
                 println!("interpreter not found!\n");
                 None
-            } Ok(output) => if output.status.success() {
-                let stdout = str::from_utf8(output.output.as_slice()).unwrap().to_owned();
-
-                Some((stdout, elapsed))
-            } else {
-                print!("execution failed! {} stderr:\n{}",
-                    prog,
-                    str::from_utf8(output.error.as_slice()).unwrap());
-
-                None
             }
+            Ok(ProcessOutput{status, output, error}) =>
+                if status.success() {
+                    let stdout = str::from_utf8(output.as_slice()).unwrap().to_owned();
+
+                    Some((stdout, elapsed))
+                } else {
+                    print!("execution failed! {} stderr:\n{}",
+                           prog,
+                           str::from_utf8(error.as_slice()).unwrap());
+
+                    None
+                }
         }
     }
 }
