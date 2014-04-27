@@ -257,24 +257,22 @@ impl<'a,'b> Benchmark<'a,'b> {
         }.map(|(solution, time)| (solution == self.problem.answer, time))
     }
 
-    fn benchmark(&self, base_results: &Option<&[BenchmarkResult]>) -> Option<BenchmarkResult> {
-        print!("* COMPILING... ");
-        stdio::flush();
-        let compiler_output = match self.language.compiler {
-            None => {
-                println!("Nothing to compile");
-                None
-            } Some(_) => {
+    fn benchmark(&self, base_results: &Option<&[BenchmarkResult]>) ->
+                                                    Option<BenchmarkResult> {
+        let compiler_output =
+            if self.language.compiler.is_some() {
+                print!("* COMPILING... ");
+                stdio::flush();
                 match self.compile() {
-                    None => {
-                        return None;
-                    } Some(out) => {
-                        println!("Done")
+                    None => return None,
+                    Some(out) => {
+                        println!("Done");
                         Some(out)
                     }
                 }
-            }
-        };
+            } else {
+                None
+            };
 
         print!("* VALIDATING... ");
         stdio::flush();
