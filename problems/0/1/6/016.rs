@@ -21,7 +21,8 @@ fn pow(b: BigUint, n: uint) -> BigUint {
     match n {
         0 => One::one(),
         1 => b,
-        _ => pow(b.clone(), n % 2) * pow(b * b, n / 2)
+        n if n%2 == 0 => pow(b*b, n/2),
+        n => pow(b*b, n/2) * b
     }
 }
 
