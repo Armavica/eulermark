@@ -1,32 +1,32 @@
-000 - Nothing
---------------
+000 - 42
+--------
 
-Write a program that does nothing!
+Write a program that prints `42`.
 
 Language | LoC
 --- | :---:
-Bash | 0
-CPython | 0
-Ruby | 0
-CoffeeScript | 0
-JavaScript | 0
-Lua | 1
-Rust | 2
-Go | 3
-Haskell | 3
-C | 4
-C++ | 5
+Bash | 1
+Ruby | 1
+CoffeeScript | 1
+JavaScript | 1
+Python | 1
+Lua | 2
+Haskell | 2
+Rust | 3
+C | 5
+Go | 5
+C++ | 6
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  536 us | 100%
-Go |  573 us | 106%
-Haskell | 1.17 ms | 218%
-Lua | 1.21 ms | 225%
-C++ |  1.3 ms | 243%
-Rust | 1.38 ms | 257%
-Bash | 2.31 ms | 431%
-CPython | 8.72 ms | 1626%
-Ruby | 17.1 ms | 3199%
-CoffeeScript | 24.6 ms | 4587%
-JavaScript | 24.6 ms | 4590%
+C |    380 µs | 100%
+Rust |    535 µs | 140%
+Go |    592 µs | 155%
+C++ |    751 µs | 197%
+Lua |    761 µs | 200%
+Haskell |    821 µs | 216%
+Bash |    822 µs | 216%
+Ruby |   19.1 ms | 5050%
+CoffeeScript |     31 ms | 8166%
+JavaScript |   31.6 ms | 8321%
+Python |   63.2 ms | 16656%

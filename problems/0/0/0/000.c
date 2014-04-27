@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 int main() {
-  return 0;
+    printf("42\n");
+    return 0;
 }
 
