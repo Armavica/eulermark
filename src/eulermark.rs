@@ -277,16 +277,14 @@ impl<'a,'b> Benchmark<'a,'b> {
         print!("* VALIDATING... ");
         stdio::flush();
         let estimate = match self.execute(&compiler_output) {
-            None => {
-                return None;
-            } Some((correct, time)) => {
-                if correct {
-                    println!("Correct!");
-                    time
-                } else {
-                    println!("Incorrect\n")
-                    return None;
-                }
+            None => return None,
+            Some((false, _)) => {
+                println!("Incorrect\n");
+                return None
+            }
+            Some((true, time)) => {
+                println!("Correct!");
+                time
             }
         };
 
