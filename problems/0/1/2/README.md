@@ -25,17 +25,17 @@ divisors?
 Language | LoC
 --- | :---:
 Haskell | 19
-CPython | 57
-Rust | 79
+Python | 58
+Rust | 78
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 8.21 ms | 100%
-Haskell | 17.9 ms | 218%
-CPython | 74.1 ms | 902%
+Rust |   6.18 ms | 100%
+Haskell |   18.8 ms | 305%
+Python |    176 ms | 2848%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 6.83 ms | 100%
-Haskell | 16.8 ms | 245%
-CPython | 65.4 ms | 956%
+Rust |   5.64 ms | 100%
+Haskell |     18 ms | 320%
+Python |    112 ms | 1997%

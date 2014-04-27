@@ -23,14 +23,14 @@ in its decimal fraction part.
 Language | LoC
 --- | :---:
 Haskell | 17
-Rust | 35
+Rust | 33
 
 Language | aTime | aTime
 --- | :---: | :---:
-Haskell | 3.44 ms | 100%
-Rust | 8.38 ms | 243%
+Rust |   1.11 ms | 100%
+Haskell |   3.42 ms | 307%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Haskell | 2.27 ms | 100%
-Rust |    7 ms | 308%
+Rust |    578 µs | 100%
+Haskell |    2.6 ms | 450%

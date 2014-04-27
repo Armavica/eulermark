@@ -17,24 +17,25 @@ Ruby | 12
 JavaScript | 12
 C | 13
 Lua | 13
-CPython | 15
+Python | 15
 Go | 16
 Rust | 18
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  544 us | 100%
-Go |  868 us | 159%
-Haskell | 1.12 ms | 206%
-Lua | 1.21 ms | 223%
-Rust | 1.46 ms | 268%
-CPython | 9.33 ms | 1713%
-Ruby | 17.5 ms | 3217%
-CoffeeScript | 31.1 ms | 5721%
-JavaScript | 31.4 ms | 5769%
+C |    428 µs | 100%
+Rust |    593 µs | 138%
+Go |    672 µs | 157%
+Lua |    833 µs | 194%
+Haskell |    885 µs | 206%
+Ruby |   20.5 ms | 4801%
+CoffeeScript |   32.6 ms | 7633%
+JavaScript |   33.3 ms | 7795%
+Python |     68 ms | 15892%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Go |  295 us | 100%
-CoffeeScript | 6.55 ms | 2221%
-JavaScript |  6.8 ms | 2305%
+Ruby |   1.36 ms | 100%
+CoffeeScript |   1.65 ms | 121%
+JavaScript |   1.75 ms | 128%
+Python |   4.75 ms | 347%

@@ -206,17 +206,17 @@ numbers.
 
 Language | LoC
 --- | :---:
-CPython | 2
+Python | 2
 Haskell | 5
 Rust | 12
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 1.95 ms | 100%
-Haskell | 2.51 ms | 128%
-CPython | 8.61 ms | 440%
+Rust |    835 µs | 100%
+Haskell |   2.68 ms | 321%
+Python |     68 ms | 8146%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  575 us | 100%
-Haskell | 1.34 ms | 233%
+Haskell |   1.86 ms | 100%
+Python |   4.79 ms | 257%

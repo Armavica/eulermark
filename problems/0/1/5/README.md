@@ -11,11 +11,11 @@ How many such routes are there through a 20*20 grid?
 Language | LoC
 --- | :---:
 Haskell | 3
-Rust | 11
+Rust | 8
 C | 14
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  555 us | 100%
-Haskell | 1.19 ms | 214%
-Rust | 1.45 ms | 261%
+C |    428 µs | 100%
+Rust |    592 µs | 138%
+Haskell |    904 µs | 210%

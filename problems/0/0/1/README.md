@@ -10,7 +10,7 @@ Language | LoC
 --- | :---:
 Ruby | 1
 CoffeeScript | 2
-CPython | 3
+Python | 3
 Rust | 4
 Lua | 7
 Bash | 7
@@ -22,21 +22,22 @@ C++ | 12
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  543 us | 100%
-Go |  870 us | 160%
-Haskell | 1.19 ms | 218%
-Lua | 1.21 ms | 223%
-C++ | 1.22 ms | 225%
-Rust | 1.43 ms | 263%
-CPython | 8.75 ms | 1610%
-Bash | 15.7 ms | 2905%
-Ruby | 17.5 ms | 3227%
-CoffeeScript | 30.5 ms | 5618%
-JavaScript | 30.8 ms | 5677%
+C |    417 µs | 100%
+Rust |    586 µs | 140%
+Go |    648 µs | 155%
+C++ |    812 µs | 194%
+Lua |    892 µs | 213%
+Haskell |    916 µs | 219%
+Bash |   16.6 ms | 3994%
+Ruby |   20.6 ms | 4939%
+JavaScript |   33.4 ms | 8014%
+CoffeeScript |   33.5 ms | 8028%
+Python |   68.2 ms | 16325%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Go |  297 us | 100%
-CoffeeScript | 5.93 ms | 1995%
-JavaScript | 6.23 ms | 2098%
-Bash | 13.4 ms | 4534%
+Ruby |   1.44 ms | 100%
+JavaScript |   1.86 ms | 128%
+CoffeeScript |   2.51 ms | 173%
+Python |   4.92 ms | 339%
+Bash |   15.8 ms | 1094%

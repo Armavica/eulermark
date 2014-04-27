@@ -7,14 +7,18 @@ What is the largest prime factor of the number 600851475143 ?
 
 Language | LoC
 --- | :---:
-CPython | 12
+Python | 12
 Haskell | 15
 C | 18
 Rust | 30
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  579 us | 100%
-Haskell | 1.24 ms | 215%
-Rust | 1.49 ms | 258%
-CPython | 8.79 ms | 1517%
+C |    444 µs | 100%
+Rust |    617 µs | 138%
+Haskell |   1.08 ms | 243%
+Python |   68.4 ms | 15394%
+
+Language | rTime | rTime
+--- | :---: | :---:
+Python |   5.16 ms | 100%

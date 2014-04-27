@@ -8,21 +8,21 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 Language | LoC
 --- | :---:
-CPython | 7
+Python | 7
 Rust | 20
 C | 21
 Haskell | 21
 
 Language | aTime | aTime
 --- | :---: | :---:
-C | 1.36 ms | 100%
-Rust | 2.29 ms | 167%
-Haskell | 2.35 ms | 172%
-CPython |  182 ms | 13340%
+C |   1.46 ms | 100%
+Rust |   1.56 ms | 106%
+Haskell |   2.42 ms | 165%
+Python |    212 ms | 14544%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C |  828 us | 100%
-Rust |  910 us | 109%
-Haskell | 1.18 ms | 143%
-CPython |  173 ms | 20928%
+Rust |   1.02 ms | 100%
+C |   1.08 ms | 105%
+Haskell |    1.6 ms | 156%
+Python |    149 ms | 14565%

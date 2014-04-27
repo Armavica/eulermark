@@ -13,8 +13,8 @@ What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5,
 
 Language | LoC
 --- | :---:
-Rust | 20
+Rust | 19
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 1.46 ms | 100%
+Rust |    602 µs | 100%

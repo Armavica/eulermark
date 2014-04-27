@@ -54,14 +54,13 @@ requires a clever method! ;o)
 Language | LoC
 --- | :---:
 Haskell | 13
-Rust | 25
+Rust | 24
 
 Language | aTime | aTime
 --- | :---: | :---:
-Haskell |  1.5 ms | 100%
-Rust | 1.61 ms | 107%
+Rust |    608 µs | 100%
+Haskell |   1.55 ms | 255%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  230 us | 100%
-Haskell |  332 us | 144%
+Haskell |    733 µs | 100%

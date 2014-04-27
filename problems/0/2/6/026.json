@@ -1,1 +1,1 @@
-[{"language":"Haskell","loc":17,"absolute":{"mu":3444258,"sigma":138656},"relative":{"mu":2272264,"sigma":148039}},{"language":"Rust","loc":35,"absolute":{"mu":8388651,"sigma":282535},"relative":{"mu":7006767,"sigma":296948}}]
+[{"language":"Rust","loc":33,"absolute":{"mu":1113703,"sigma":472068},"relative":{"mu":578160,"sigma":483165}},{"language":"Haskell","loc":17,"absolute":{"mu":3428494,"sigma":264764},"relative":{"mu":2607410,"sigma":283138}}]

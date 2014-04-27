@@ -38,11 +38,14 @@ What is the first term in the Fibonacci sequence to contain 1000 digits?
 Language | LoC
 --- | :---:
 Haskell | 15
+Rust | 23
 
 Language | aTime | aTime
 --- | :---: | :---:
-Haskell |  354 ms | 100%
+Rust |    1.9 ms | 100%
+Haskell |    374 ms | 19650%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Haskell |  352 ms | 100%
+Rust |   1.36 ms | 100%
+Haskell |    373 ms | 27282%

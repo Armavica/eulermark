@@ -21,21 +21,21 @@ Which starting number, under one million, produces the longest chain?
 
 Language | LoC
 --- | :---:
-CPython | 6
+Python | 6
 Haskell | 17
-Rust | 26
+Rust | 25
 C | 30
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |   14 ms | 100%
-Rust | 25.5 ms | 181%
-Haskell |  361 ms | 2567%
-CPython | 1.32 s | 9409%
+C |   14.4 ms | 100%
+Rust |   26.8 ms | 185%
+Haskell |    369 ms | 2547%
+Python |   1.76 s | 12149%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C | 13.5 ms | 100%
-Rust | 24.2 ms | 178%
-Haskell |  360 ms | 2660%
-CPython | 1.31 s | 9717%
+C |   14.1 ms | 100%
+Rust |   26.3 ms | 186%
+Haskell |    368 ms | 2610%
+Python |   1.69 s | 12027%

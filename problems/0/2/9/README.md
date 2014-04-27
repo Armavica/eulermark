@@ -18,12 +18,12 @@ and 2 <= b <= 100?
 
 Language | LoC
 --- | :---:
-Rust | 97
+Rust | 96
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 4.09 ms | 100%
+Rust |   3.05 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 2.71 ms | 100%
+Rust |   2.51 ms | 100%

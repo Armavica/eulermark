@@ -17,14 +17,18 @@ natural numbers and the square of the sum.
 
 Language | LoC
 --- | :---:
-CPython | 1
+Python | 1
 Rust | 7
 Haskell | 9
 C | 11
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  562 us | 100%
-Haskell | 1.16 ms | 207%
-Rust | 1.46 ms | 259%
-CPython | 8.64 ms | 1535%
+C |    425 µs | 100%
+Rust |    740 µs | 174%
+Haskell |    894 µs | 210%
+Python |   68.5 ms | 16133%
+
+Language | rTime | rTime
+--- | :---: | :---:
+Python |   5.28 ms | 100%

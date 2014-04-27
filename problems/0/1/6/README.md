@@ -7,16 +7,17 @@ What is the sum of the digits of the number 2^1000?
 
 Language | LoC
 --- | :---:
-CPython | 1
+Python | 1
 Haskell | 5
-Rust | 21
+Rust | 22
 
 Language | aTime | aTime
 --- | :---: | :---:
-Haskell | 1.21 ms | 100%
-Rust | 2.09 ms | 173%
-CPython | 8.59 ms | 709%
+Haskell |    924 µs | 100%
+Rust |   1.22 ms | 132%
+Python |     68 ms | 7360%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  717 us | 100%
+Rust |    685 µs | 100%
+Python |   4.75 ms | 693%

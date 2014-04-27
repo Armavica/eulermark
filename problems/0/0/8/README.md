@@ -51,12 +51,10 @@ C | 28
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  640 us | 100%
-Haskell | 1.42 ms | 222%
-Rust |  1.6 ms | 250%
+C |    487 µs | 100%
+Rust |    638 µs | 131%
+Haskell |   1.35 ms | 278%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C |  103 us | 100%
-Rust |  225 us | 217%
-Haskell |  252 us | 243%
+Haskell |    533 µs | 100%

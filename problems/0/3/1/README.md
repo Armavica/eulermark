@@ -14,12 +14,12 @@ How many different ways can £2 be made using any number of coins?
 
 Language | LoC
 --- | :---:
-Rust | 71
+Rust | 70
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 67.3 ms | 100%
+Rust |   53.2 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 65.9 ms | 100%
+Rust |   52.6 ms | 100%

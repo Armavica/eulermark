@@ -15,6 +15,6 @@ C | 26
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  560 us | 100%
-Haskell | 1.17 ms | 209%
-Rust | 1.49 ms | 266%
+C |    431 µs | 100%
+Rust |    585 µs | 135%
+Haskell |    900 µs | 208%

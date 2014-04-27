@@ -1,3 +1,6 @@
+030 - Digit fifth power
+-----------------------
+
 Surprisingly there are only three numbers that can be written as the sum of
 fourth powers of their digits:
 
@@ -12,12 +15,12 @@ Find the sum of all the numbers that can be written as the sum of fifth powers
 of their digits.
 Language | LoC
 --- | :---:
-Rust | 78
+Rust | 77
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust |  188 ms | 100%
+Rust |    210 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  186 ms | 100%
+Rust |    209 ms | 100%

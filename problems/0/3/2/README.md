@@ -16,12 +16,12 @@ include it once in your sum.
 
 Language | LoC
 --- | :---:
-Rust | 29
+Rust | 28
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust |  130 ms | 100%
+Rust |    153 ms | 100%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  129 ms | 100%
+Rust |    153 ms | 100%

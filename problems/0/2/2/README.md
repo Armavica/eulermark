@@ -20,10 +20,10 @@ Rust | 13
 
 Language | aTime | aTime
 --- | :---: | :---:
-Rust | 3.05 ms | 100%
-Haskell |  8.6 ms | 281%
+Rust |   2.01 ms | 100%
+Haskell |    8.9 ms | 441%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust | 1.67 ms | 100%
-Haskell | 7.42 ms | 444%
+Rust |   1.48 ms | 100%
+Haskell |   8.08 ms | 544%

@@ -19,14 +19,14 @@ C++ | 6
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |    380 µs | 100%
-Rust |    535 µs | 140%
-Go |    592 µs | 155%
-C++ |    751 µs | 197%
-Lua |    761 µs | 200%
-Haskell |    821 µs | 216%
-Bash |    822 µs | 216%
-Ruby |   19.1 ms | 5050%
-CoffeeScript |     31 ms | 8166%
-JavaScript |   31.6 ms | 8321%
-Python |   63.2 ms | 16656%
+C |    425 µs | 100%
+Rust |    592 µs | 139%
+Go |    692 µs | 162%
+C++ |    803 µs | 188%
+Lua |    844 µs | 198%
+Bash |    855 µs | 200%
+Haskell |    865 µs | 203%
+Ruby |   20.5 ms | 4826%
+CoffeeScript |   32.6 ms | 7673%
+JavaScript |   33.4 ms | 7859%
+Python |     68 ms | 15971%

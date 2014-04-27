@@ -10,16 +10,16 @@ Language | LoC
 --- | :---:
 Haskell | 3
 C | 24
-Rust | 30
+Rust | 29
 
 Language | aTime | aTime
 --- | :---: | :---:
-C | 1.06 ms | 100%
-Rust | 2.03 ms | 191%
-Haskell | 5.93 ms | 558%
+C |    767 µs | 100%
+Rust |   1.03 ms | 134%
+Haskell |   6.45 ms | 841%
 
 Language | rTime | rTime
 --- | :---: | :---:
-C |  525 us | 100%
-Rust |  651 us | 124%
-Haskell | 4.76 ms | 907%
+C |    387 µs | 100%
+Rust |    498 µs | 128%
+Haskell |   5.63 ms | 1454%

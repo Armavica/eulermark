@@ -14,20 +14,19 @@ Find the product `abc`.
 
 Language | LoC
 --- | :---:
-CPython | 5
+Python | 5
 Haskell | 11
 Rust | 13
 C | 14
 
 Language | aTime | aTime
 --- | :---: | :---:
-C |  574 us | 100%
-Rust |  1.5 ms | 262%
-Haskell | 1.69 ms | 296%
-CPython | 9.92 ms | 1728%
+C |    434 µs | 100%
+Rust |    593 µs | 136%
+Haskell |   1.63 ms | 374%
+Python |   69.7 ms | 16046%
 
 Language | rTime | rTime
 --- | :---: | :---:
-Rust |  127 us | 100%
-Haskell |  527 us | 414%
-CPython | 1.19 ms | 937%
+Haskell |    809 µs | 100%
+Python |   6.49 ms | 802%
