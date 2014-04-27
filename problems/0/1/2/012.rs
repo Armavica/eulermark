@@ -2,7 +2,6 @@
 
 use std::iter::count;
 use std::mem::replace;
-use std::vec_ng::Vec;
 
 fn main() {
     let mut primes = vec!(2);

@@ -2,7 +2,6 @@
 
 use std::iter::{AdditiveIterator,count};
 use std::num::pow;
-use std::vec_ng::Vec;
 
 struct Digits(Vec<uint>);
 

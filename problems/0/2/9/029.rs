@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::num::pow;
-use std::vec_ng::Vec;
 
 // Factors(vec!((a, x), (b, y))) <-> a^x * b^y
 #[deriving(Eq,TotalEq,TotalOrd)]

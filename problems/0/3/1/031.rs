@@ -3,7 +3,6 @@
 extern crate collections;
 
 use collections::HashSet;
-use std::vec_ng::Vec;
 
 static NPENCES: u8 = 8;
 
@@ -36,7 +35,7 @@ impl Pence {
     }
 }
 
-#[deriving(Clone,Eq,Hash)]
+#[deriving(Clone,TotalEq,Eq,Hash)]
 struct Change {
     pences: Vec<u8>,
 }

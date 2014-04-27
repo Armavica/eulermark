@@ -6,7 +6,7 @@ use std::iter::AdditiveIterator;
 fn main() {
     let mut file = File::open(&Path::new("022.in")).ok().unwrap();
     let contents = file.read_to_str().ok().unwrap();
-    let mut names = contents.split(',').map(|x| x.slice(1, x.len() - 1)).to_owned_vec();
+    let mut names: Vec<&str> = contents.split(',').map(|x| x.slice(1, x.len() - 1)).collect();
 
     names.sort();
 

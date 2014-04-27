@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::range_step_inclusive;
-use std::vec_ng::Vec;
 
 fn main() {
     let limit = 1000;

@@ -2,14 +2,13 @@
 
 use std::char::from_digit;
 use std::iter::MultiplicativeIterator;
-use std::vec_ng::Vec;
 
 fn main() {
     println!("{}", nth_perm(999999, &mut range(0u, 10).collect()));
 }
 
 fn nth_perm(mut m: uint, digits: &mut Vec<uint>) -> ~str {
-    let mut out = ~"";
+    let mut out = StrBuf::new();
 
     while digits.len() > 0 {
         let n = digits.len();
@@ -20,7 +19,7 @@ fn nth_perm(mut m: uint, digits: &mut Vec<uint>) -> ~str {
         out.push_char(from_digit(digits.remove(i).unwrap(), 10).unwrap());
     }
 
-    out
+    out.into_owned()
 }
 
 fn factorial(n: uint) -> uint {

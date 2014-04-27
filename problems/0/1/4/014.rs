@@ -3,7 +3,6 @@
 extern crate num;
 
 use num::Integer;
-use std::vec_ng::Vec;
 
 fn main() {
     let upper = 1000000;

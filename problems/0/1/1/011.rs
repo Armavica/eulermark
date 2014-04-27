@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::io::fs::File;
-use std::vec_ng::Vec;
 
 static STRIDE: int = 4;
 

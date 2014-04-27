@@ -2,7 +2,6 @@
 
 use std::iter::AdditiveIterator;
 use std::iter::range_step;
-use std::vec_ng::Vec;
 
 fn main() {
     println!("{}", primes(2000000).sum());

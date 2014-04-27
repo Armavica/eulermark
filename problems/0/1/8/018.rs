@@ -2,7 +2,6 @@
 
 use std::cmp::max;
 use std::io::fs::File;
-use std::vec_ng::Vec;
 
 fn main() {
     let content = File::open(&Path::new("018.in")).read_to_str().unwrap();

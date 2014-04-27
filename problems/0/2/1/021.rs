@@ -2,7 +2,6 @@
 
 use std::iter::AdditiveIterator;
 use std::num::pow;
-use std::vec_ng::Vec;
 
 fn main() {
     let n = 10000;

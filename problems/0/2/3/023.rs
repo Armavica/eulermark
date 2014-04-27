@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::num::pow;
-use std::vec_ng::Vec;
 
 fn main() {
     let limit = 28123;

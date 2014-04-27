@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::range_step;
-use std::vec_ng::Vec;
 
 fn main() {
     println!("{}", primes(200000).nth(10000).unwrap());

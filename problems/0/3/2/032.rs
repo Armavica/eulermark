@@ -1,7 +1,6 @@
 // Copyright (C) 2014 Jorge Aparicio
 
 use std::iter::AdditiveIterator;
-use std::vec_ng::Vec;
 
 fn to_number(digits: &[u8]) -> uint {
     digits.iter().fold(0, |acc, &d| 10 * acc + d as uint)

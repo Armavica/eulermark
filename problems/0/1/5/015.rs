@@ -1,17 +1,13 @@
 // Copyright (C) 2014 Jorge Aparicio
 
-use std::vec;
-
 fn main() {
     let size = 21;
-    let mut grid = vec::from_elem(size, vec::from_elem(size, 1u));
+    let mut line = Vec::from_elem(size, 1u);
 
-    for i in range(1, size) {
-        for j in range(1, size) {
-            grid[i][j] = grid[i - 1][j] + grid[i][j - 1];
-        }
+    for _ in range(1, size) {
+        line = line.move_iter().scan(0, |l, i| {*l = *l + i; Some(*l)}).collect();
     }
 
-    println!("{}", *grid.last().unwrap().last().unwrap());
+    println!("{}", line.last().unwrap());
 }
 
