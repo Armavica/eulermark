@@ -37,9 +37,8 @@ impl Drop for Symlink {
     fn drop(&mut self) {
         let &Symlink(ref path) = self;
 
-        match fs::unlink(path) {
-            Err(_) => fail!("failed to remove symlink"),
-            Ok(_)  => {}
+        if fs::unlink(path).is_err() {
+            fail!("Failed to remove symlink")
         }
     }
 }
@@ -86,15 +85,13 @@ struct CompilerOutput {
 
 impl Drop for CompilerOutput {
     fn drop(&mut self) {
-        match fs::unlink(&self.executable) {
-            Err(_) => fail!("Couldn't delete executable"),
-            Ok(_)  => {}
+        if fs::unlink(&self.executable).is_err() {
+            fail!("Couldn't delete executable")
         }
 
         for file in self.byproduct.iter() {
-            match fs::unlink(file) {
-                Err(_) => fail!("Couldn't delete byproduct"),
-                Ok(_)  => {}
+            if fs::unlink(file).is_err() {
+                fail!("Couldn't delete executable")
             }
         }
     }
@@ -436,20 +433,19 @@ fn read_results(json_path: &Path) -> Option<Vec<BenchmarkResult>> {
 
 fn write_results(results: &[BenchmarkResult], json_path: &Path) {
     match File::open_mode(json_path, Truncate, Write) {
-        Err(_) => fail!("couldn't open json file"),
-        Ok(mut file) => match file.write_str(json::Encoder::str_encode(&results)) {
-            Err(_) => fail!("failed to write json file"),
-            Ok(_) => {}
-        }
+        Err(_) => fail!("Couldn't open json file"),
+        Ok(mut file) =>
+            if file.write_str(json::Encoder::str_encode(&results)).is_err() {
+                fail!("Failed to write json file")
+            }
     }
 }
 
 fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
     let readme_path = problem_path.dir_path().join("README.md");
 
-    match fs::copy(&problem_path.with_extension("md"), &readme_path) {
-        Err(_) => fail!("failed to copy md file"),
-        Ok(_) => {}
+    if fs::copy(&problem_path.with_extension("md"), &readme_path).is_err() {
+        fail!("Failed to copy md file")
     }
 
     match File::open_mode(&readme_path, Append, Write) {
@@ -502,9 +498,8 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
 
             buf.push_str("\n");
 
-            match file.write_str(buf.into_owned()) {
-                Err(_) => fail!("failed to write README.md"),
-                Ok(_) => {}
+            if file.write_str(buf.into_owned()).is_err() {
+                fail!("Failed to write README.md")
             }
         }
     }
@@ -625,11 +620,10 @@ fn update_table() {
     buf.push_str("\n");
 
     match File::open_mode(&eulermark_directory().join("README.md"), Truncate, Write) {
-        Err(_)   => fail!("failed to open README.md"),
-        Ok(mut file) => match file.write_str(buf.into_owned()) {
-            Err(_) => fail!("failed to write README.md"),
-            Ok(_)  => {}
-        }
+        Err(_)          =>  fail!("failed to open README.md"),
+        Ok(mut file)    =>  if file.write_str(buf.into_owned()).is_err() {
+                                fail!("failed to write README.md")
+                            }
     }
 }
 
