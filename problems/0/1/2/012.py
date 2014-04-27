@@ -1,3 +1,5 @@
+from functools import reduce
+
 primes = [2]
 
 
@@ -27,7 +29,7 @@ def factorize(n):
 
 
 def number_of_divisors(factors):
-    return reduce(lambda acc, (_, n): acc * (n + 1), factors, 1)
+    return reduce(lambda acc, f: acc * (f[1] + 1), factors, 1)
 
 
 def triangle(left_factors, right_factors):
@@ -76,4 +78,4 @@ while nod < 500:
 
     nod = number_of_divisors(triangle(cur, nex))
 
-print(n * (n - 1) / 2)
+print(int(n * (n - 1) / 2))
