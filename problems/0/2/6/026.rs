@@ -17,9 +17,7 @@ fn main() {
         }
     }
 
-    primes.sort_by(|&a, &b| cycle_size(a).cmp(&cycle_size(b)));
-
-    println!("{}", primes.last().unwrap());
+    println!("{}", primes.move_iter().max_by(|&a| cycle_size(a)).unwrap());
 }
 
 fn cycle_size(den: uint) -> uint {
