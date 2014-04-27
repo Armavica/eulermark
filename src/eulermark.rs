@@ -184,28 +184,37 @@ impl Problem {
             id.char_at(2),
             id,
         ));
-        let ans = match File::open(&path.with_extension("ans")) {
-            Err(_) => {
-                println!("answer file (.ans) not found!");
-                return None;
-            } Ok(mut f) => match f.read_to_str() {
-                Err(e) => {
-                    println!("failed to read answer file: {}", e);
+        let ans =
+            match File::open(&path.with_extension("ans")) {
+                Err(_) => {
+                    println!("answer file (.ans) not found!");
                     return None;
-                } Ok(s) => s,
-            }
-        };
-        let title = match File::open(&path.with_extension("md")) {
-            Err(_) => {
-                println!("problem statement file (.md) not found!");
-                return None;
-            } Ok(mut f) => match f.read_to_str() {
-                Err(e) => {
-                    println!("failed to read  file: {}", e);
+                }
+                Ok(mut f) =>
+                    match f.read_to_str() {
+                        Err(e) => {
+                            println!("failed to read answer file: {}", e);
+                            return None;
+                        }
+                        Ok(s) => s
+                    }
+            };
+        let title =
+            match File::open(&path.with_extension("md")) {
+                Err(_) => {
+                    println!("problem statement file (.md) not found!");
                     return None;
-                } Ok(s) => s.lines().take(2).collect::<Vec<&str>>().connect("\n"),
-            }
-        };
+                }
+                Ok(mut f) =>
+                    match f.read_to_str() {
+                        Err(e) => {
+                            println!("failed to read  file: {}", e);
+                            return None;
+                        }
+                        Ok(s) =>
+                            s.lines().take(2).collect::<Vec<&str>>().connect("\n")
+                    }
+            };
 
         Some(Problem { answer: ans, path: path, title: title })
     }
@@ -307,13 +316,12 @@ impl<'a,'b> Benchmark<'a,'b> {
 
         let relative = match base_results {
             &None => None,
-            &Some(results) => match results.iter().find(|result| result.language == self.language.name) {
-                None => None,
-                Some(result) => {
-                    Some(absolute - result.absolute)
-                }
+            &Some(results) =>
+                match results.iter()
+                        .find(|result| result.language == self.language.name) {
+                    None            => None,
+                    Some(result)    => Some(absolute - result.absolute)
             }
-
         };
 
         match relative {
@@ -409,17 +417,19 @@ fn read_results(json_path: &Path) -> Option<Vec<BenchmarkResult>> {
         Err(_) => {
             println!("failed to open {}", json_path.as_str().unwrap());
             None
-        } Ok(mut file) => match file.read_to_str() {
+        }
+        Ok(mut file) => match file.read_to_str() {
             Err(_) => {
                 println!("failed to read {}", json_path.as_str().unwrap());
                 None
-            } Ok(s) => match json::from_str(s) {
+            }
+            Ok(s) => match json::from_str(s) {
                 Err(_) => {
                     println!("failed to parse {}", json_path.as_str().unwrap());
                     None
-                } Ok(json) => {
-                    Some(Decodable::decode(&mut json::Decoder::new(json)).unwrap())
                 }
+                Ok(json) =>
+                    Some(Decodable::decode(&mut json::Decoder::new(json)).unwrap())
             }
         }
     }
@@ -557,7 +567,7 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
             update_readme(results.as_mut_slice(), &problem.path);
             println!("Done\n");
         }
-    };
+    }
 }
 
 fn update_table() {
@@ -567,7 +577,7 @@ fn update_table() {
     buf.push_str(":--:| :---: | :---: | :---:\n");
     buf.push_str(match fs::walk_dir(&problems_directory()) {
         Err(_)    => fail!("Problems directory does not exist"),
-        Ok(paths) => paths.filter_map(|path| {
+        Ok(paths) => paths.filter_map(|path|
             if path.extension_str().map_or(false, |ext| ext == "json") {
                 let results = read_results(&path).unwrap();
 
@@ -606,8 +616,7 @@ fn update_table() {
                         loc))
             } else {
                 None
-            }
-        })
+            })
     }.collect::<Vec<~str>>().connect("\n"));
 
     buf.push_str("\n");
@@ -665,16 +674,17 @@ fn main() {
                             fail!("Problem 0 must be benchmarked first");
                         }
                         benchmark(languages.as_slice(), 0, &None);
-                    } Some(results) => {
+                    }
+                    Some(results) =>
                         for i in range_inclusive(low, high) {
                             let base_results = if i == 0 { None } else { Some(results.as_slice()) };
                             benchmark(languages.as_slice(), i, &base_results);
                         }
-                    }
                 }
             };
-        } "table" => update_table(),
-        _ => help(),
+        }
+        "table" => update_table(),
+        _ => help()
     }
 }
 
