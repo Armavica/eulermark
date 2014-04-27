@@ -141,7 +141,7 @@ impl Interpreter {
 
         match out {
             Err(_) => {
-                println!("interpreter not found!");
+                println!("interpreter not found!\n");
                 None
             } Ok(output) => if output.status.success() {
                 let stdout = str::from_utf8(output.output.as_slice()).unwrap().to_owned();
@@ -222,9 +222,9 @@ impl<'a,'b> Benchmark<'a,'b> {
 
         if source.exists() {
             let loc = match File::open(&source) {
-                Err(_) => fail!("failed to open source file"),
+                Err(_) => fail!("Failed to open source file"),
                 Ok(mut file) => match file.read_to_str() {
-                    Err(_) => fail!("failed to read source file"),
+                    Err(_) => fail!("Failed to read source file"),
                     Ok(code) => code.lines().fold(0, |loc, line| {
                         let line = line.trim();
                         if line.char_len() == 0 || line.starts_with(language.comment) {
@@ -308,7 +308,7 @@ impl<'a,'b> Benchmark<'a,'b> {
         let mu = samples.as_slice().mean() as u64;
         let sigma = samples.as_slice().std_dev() as u64;
 
-        print!("abs: {} ns/iter (+/- {})", mu, sigma);
+        print!("abs: {} ns/iter (± {})", mu, sigma);
 
         let absolute = Measurement { mu: mu, sigma: sigma };
 
@@ -325,7 +325,8 @@ impl<'a,'b> Benchmark<'a,'b> {
 
         match relative {
             None => println!(" rel: None"),
-            Some(ref measurement) => println!(" rel: {} ns/iter (+/- {})", measurement.mu ,measurement.sigma)
+            Some(ref measurement) =>
+                println!(" rel: {} ns/iter (± {})", measurement.mu, measurement.sigma)
         }
 
         Some(BenchmarkResult {
@@ -380,18 +381,18 @@ fn problems_directory() -> Path {
 
 fn supported_languages() -> Vec<Language> {
     match fs::readdir(&languages_directory()) {
-        Err(e) => fail!("languages directory not found: {}", e),
+        Err(e) => fail!("Languages directory not found: {}", e),
         Ok(paths) => paths.move_iter().filter(|path| match path.extension_str() {
             Some(extension) => extension == "json",
             None => false,
         }).map(|path| {
             let filename = path.filename_str().unwrap();
             match File::open(&path) {
-                Err(e) => fail!("failed to open {}: {}", filename, e),
+                Err(e) => fail!("Failed to open {}: {}", filename, e),
                 Ok(mut file) => match file.read_to_str() {
-                    Err(e) => fail!("failed to read {}: {}", filename, e),
+                    Err(e) => fail!("Failed to read {}: {}", filename, e),
                     Ok(s) => match json::from_str(s) {
-                        Err(e) => fail!("failed to parse {}: {}", filename, e),
+                        Err(e) => fail!("Failed to parse {}: {}", filename, e),
                         Ok(json) => {
                             // FIXME this should be an one-liner
                             let t: Language = Decodable::decode(&mut json::Decoder::new(json)).unwrap();
@@ -449,7 +450,7 @@ fn update_readme(results: &mut [BenchmarkResult], problem_path: &Path) {
     }
 
     match File::open_mode(&readme_path, Append, Write) {
-        Err(_) => fail!("failed to open README.md"),
+        Err(_) => fail!("Failed to open README.md"),
         Ok(mut file) => {
             let mut buf = StrBuf::new();
 
@@ -517,7 +518,7 @@ fn benchmark(languages: &[Language], pid: uint, base_results: &Option<&[Benchmar
                 let dst = Path::new(input_data.filename().unwrap());
 
                 match fs::symlink(&input_data, &dst) {
-                    Err(_) => fail!("failed to symlink input data"),
+                    Err(_) => fail!("Failed to symlink input data"),
                     Ok(_) => Some(Symlink(dst)),
                 }
             } else {
@@ -573,7 +574,7 @@ fn update_table() {
     buf.push_str("PID | aTime | rTime | Loc\n");
     buf.push_str(":--:| :---: | :---: | :---:\n");
     buf.push_str(match fs::walk_dir(&problems_directory()) {
-        Err(_)    => fail!("problems directory does not exist"),
+        Err(_)    => fail!("Problems directory does not exist"),
         Ok(paths) => paths.filter_map(|path| {
             if path.extension_str().map_or(false, |ext| ext == "json") {
                 let results = read_results(&path).unwrap();
@@ -665,11 +666,11 @@ fn main() {
 
             let languages = supported_languages();
             match Problem::new(0) {
-                None => fail!("problem 0 must exist"),
+                None => fail!("Problem 0 must exist"),
                 Some(problem) => match read_results(&problem.path.with_extension("json")) {
                     None => {
                         if low != 0 || high != 0 {
-                            fail!("problem 0 must be benchmarked first");
+                            fail!("Problem 0 must be benchmarked first");
                         }
                         benchmark(languages.as_slice(), 0, &None);
                     } Some(results) => {
