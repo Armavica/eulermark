@@ -17,20 +17,13 @@ use time::precise_time_ns;
 static max_bench_time: u64 = 3_000_000_000;
 
 fn format_time(ns: u64) -> ~str {
-    if ns < 1_000 {
-        format!("{:4} ns", ns)
-    } else {
-        let digits = (ns as f64).log10().ceil() as uint;
-        let one_zeros = pow(10u64, digits - 3);
-        let ns = (ns / one_zeros) * one_zeros;
-
-        if ns < 1_000_000 {
-            format!("{:4} us", ns as f64 / 1_000.0)
-        } else if ns < 1_000_000_000 {
-            format!("{:4} ms", ns as f64 / 1_000_000.0)
-        } else {
-            format!("{:4} s", ns as f64 / 1_000_000_000.0)
-        }
+    let digits = ns.to_str().len();
+    let ns = ns - ns % pow(10, digits-3) as u64;
+    match ns as f64 {
+        ns if ns < 1e3   => format!("{:>6} ns", ns),
+        ns if ns < 1e6   => format!("{:>6} µs", ns/1e3),
+        ns if ns < 1e9   => format!("{:>6} ms", ns/1e6),
+        ns               => format!("{:>6} s" , ns/1e9)
     }
 }
 
