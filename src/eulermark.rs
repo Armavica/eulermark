@@ -227,14 +227,8 @@ impl<'a,'b> Benchmark<'a,'b> {
                 Err(_) => fail!("Failed to open source file"),
                 Ok(mut file) => match file.read_to_str() {
                     Err(_) => fail!("Failed to read source file"),
-                    Ok(code) => code.lines().fold(0, |loc, line| {
-                        let line = line.trim();
-                        if line.char_len() == 0 || line.starts_with(language.comment) {
-                            loc
-                        } else {
-                            loc + 1
-                        }
-                    })
+                    Ok(code) => code.lines().count(|line|
+                        line.trim().char_len() != 0 && !line.starts_with(language.comment))
                 }
             };
             Some(Benchmark {
